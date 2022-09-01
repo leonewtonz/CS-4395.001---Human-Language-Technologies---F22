@@ -6,6 +6,7 @@ import os
 import re
 import pickle
 
+
 class Person:
 
     def __init__(self, last, first, mi, id, phone):
@@ -23,20 +24,24 @@ class Person:
 
 def text_processing(raw_text):
     lines = raw_text.splitlines(True)
-    data = [lines[i] for i in range(1, len(lines))]
+    data = [lines[i] for i in range(1, len(lines))]  # remove the 1st line
     employee_list = {}  # create a dict of employees
     for person in data:
         last, first, mi, id, phone = person.split(',')
 
+        # Processing lastname
         last = last.capitalize()
 
+        # Processing firstname
         first = first.capitalize()
 
+        # Processing middle name
         if mi != '':
             mi = mi.capitalize()
         else:
             mi = 'X'
 
+        # Processing id
         while True:
             if len(id) == 6 and id[:2].isalpha() and id[2:].isnumeric():
                 break
@@ -44,13 +49,20 @@ def text_processing(raw_text):
                 print('ID invalid: ', id)
                 print('ID is two letters followed by 4 digits')
                 id = input('Please enter a valid id: ')
-                id = id[:2].upper() + id[2:]  # auto convert first 2 characters to upper case
+        id = id[:2].upper() + id[2:]  # auto convert first 2 characters to uppercase
 
-        ## might need to work on force user to input correct phone format
-
+        # Processing phone number
+        # the program will auto reformat phone number in form 123-456-7890
+        # if phone is not 10 digits, program will ask user to re-enter it.
         phone = re.sub(r'\D', '', phone)  # get rid of non-digit chars
-        assert (len(phone) == 10)
-        phone = f"{phone[:3]}-{phone[3:6]}-{phone[6:]}"
+        while True:
+            if len(phone) == 10:
+                break
+            else:
+                print('Phone:', phone, 'is invalid')
+                print('Phone number requires 10 digits')
+                phone = input('Please enter a valid phone number: ')
+        phone = f"{phone[:3]}-{phone[3:6]}-{phone[6:]}"  # reformat phone number in form 123-456-7890
 
         employee = Person(last, first, mi, id, phone)
         id_list = employee_list.keys()
@@ -67,7 +79,6 @@ def main():
     def read_file(filepath):
         with open(os.path.join(os.getcwd(), filepath), 'r') as f:
             input_file = f.read()
-        # print(text_in) #debug
         return input_file
 
     if len(sys.argv) < 2:
@@ -86,7 +97,6 @@ def main():
         print('\nEmployee list: ')
         for e in employees.values():
             e.display()
-
 
 
 if __name__ == "__main__":
