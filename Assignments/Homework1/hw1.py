@@ -4,7 +4,7 @@
 import sys
 import os
 import re
-
+import pickle
 
 class Person:
 
@@ -16,7 +16,7 @@ class Person:
         self.phone = phone
 
     def display(self):
-        print("\n Employee id: ", self.id)
+        print("\nEmployee id: ", self.id)
         print("\t", self.first, self.mi, self.last)
         print("\t", self.phone)
 
@@ -66,19 +66,28 @@ def main():
     # Method to handle the filepath in both Window and Mac
     def read_file(filepath):
         with open(os.path.join(os.getcwd(), filepath), 'r') as f:
-            fin= f.read()
+            input_file = f.read()
         # print(text_in) #debug
-        return fin
+        return input_file
 
     if len(sys.argv) < 2:
         print('Please enter a filename as a system arg')
     else:
         fp = sys.argv[1]
-        fin= read_file(fp)
-        employees = text_processing(fin)
+        text_in = read_file(fp)
+        employees = text_processing(text_in)
 
+        # save the pickle file
+        pickle.dump(employees, open('employees.p', 'wb'))  # write binary
+
+        # read the pickle file
+        employees = pickle.load(open('employees.p', 'rb'))  # read binary
+
+        print('\nEmployee list: ')
         for e in employees.values():
             e.display()
+
+
 
 if __name__ == "__main__":
     main()
