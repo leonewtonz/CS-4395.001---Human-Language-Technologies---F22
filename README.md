@@ -29,7 +29,7 @@ PropBank and semantic parsing techniques that employ them
 	- Type in "py Homework1_ldn190002.py data/data.csv" to run the file.
 	- Make sure the filepath data/data.csv is in the same folder with Homework1_ldn190002.py
 	- Then follow the program's prompt
--	Python make it very easy to work with sysarg, and file I/O. It also have useful build-in libraries and methods to processing text file such as re, split(), splitline(), etc. However, in some cases, python will require extra step after the text was tokenize. That is NLTK is better option to processing text. For example: NLTK can perform the sentences segmentation way better then build-in python methods.
+-	Python make it very easy to work with sysarg, and file I/O. It also have useful build-in libraries and methods to processing text file such as re, split(), splitline(), etc. However, in some cases, python will require extra step after the text was tokenize. That is why NLTK is the better option to processing text. For example: NLTK can perform the sentences segmentation way better then build-in python methods.
 	- raw_text = 'Mr. Smith went to Dr. Jones. Dr. Jones was trained in the U.S.A.'
 	- NLTK will not end a sentence on just any '.'.
 	- The sent_tokenize(raw_text) will output ['Mr. Smith went to Dr. Jones.', 'Dr. Jones was trained in the U.S.A.']
