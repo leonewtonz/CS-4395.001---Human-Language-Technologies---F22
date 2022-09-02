@@ -22,7 +22,7 @@ PropBank and semantic parsing techniques that employ them
 -	An introduction summarizing historical, current approaches to NLP and reflect on my personal interest in NLP [Overview of NLP.pdf](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Portfolio%20Setup/Overview%20of%20NLP_ldn190002.pdf)
 
 ## 2. Assignment 1 - Text Processing with Python
--	This program will read a .csv file which contains employees information. Then it will process the text to be more standardized. If the program can not auto format, it will ask user to re-enter the formattable values.
+-	This program will read a .csv file which contains employees information. Then it will process the text to be more standardized. If the program can not auto format, it will ask user to re-enter a formattable value
 -	How to run:
 	- Open terminal. Go to folder contains Homework1_ldn190002.py
 	- Type in "python" to open python shell
