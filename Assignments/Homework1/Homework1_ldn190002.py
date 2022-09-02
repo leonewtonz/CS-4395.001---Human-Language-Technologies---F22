@@ -1,3 +1,7 @@
+# CS 4395.001 - NLP
+# Leo Nguyen
+# NetID: ldn190002
+
 # Homework1: Text Processing with Python
 
 
