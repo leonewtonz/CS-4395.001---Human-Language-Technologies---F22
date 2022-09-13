@@ -37,3 +37,7 @@ PropBank and semantic parsing techniques that employ them
 -	This assignment gives me a quick review on how to work on sysarg and handle file I/O. It also provide very useful practice on how to process and format text. Writing a class in Python is very simple and similar with Java.
 
 -	Link to [Assignment 1 - Text Processing with Python](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/tree/main/Assignments/Homework1)
+
+## 3. Portfolio Assignment 2: NLTK
+-	Exploring NLTK using Jupyter Notebook.
+-	Explanation and sample code on some basic NLTK methods. [Exploring NLTK]{https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Portfolio%20Assignment%202%20NLTK/Homework2_ldn190002.pdf}
