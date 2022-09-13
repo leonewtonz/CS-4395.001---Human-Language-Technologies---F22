@@ -1,0 +1,5 @@
+1. How to convert colab file to pdf
+https://www.youtube.com/watch?v=-Ti9Mm21uVc
+
+2. How to remove filename, header link, and date when print html to pdf
+https://help.zoho.com/portal/en/kb/writer/writer-troubleshooting-tips/articles/how-do-i-remove-the-date-document-name-and-document-url-details-from-the-header-and-footer-section-when-i-print-a-document
