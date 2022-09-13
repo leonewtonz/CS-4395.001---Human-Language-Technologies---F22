@@ -40,4 +40,4 @@ PropBank and semantic parsing techniques that employ them
 
 ## 3. Portfolio Assignment 2: NLTK
 -	Exploring NLTK using Jupyter Notebook.
--	Explanation and sample code on some basic NLTK methods. [Exploring NLTK]{https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Portfolio%20Assignment%202%20NLTK/Homework2_ldn190002.pdf}
+-	Explanation and sample code on some basic NLTK methods. [Exploring NLTK](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Portfolio%20Assignment%202%20NLTK/Homework2_ldn190002.pdf)
