@@ -54,22 +54,37 @@ def guessing_game(top50):
     print("\n\nLet's play a word of guessing game!")
     print('Starting score: 5')
 
-    letter = ''
-    characters = ''
-    rand_number = random.randint(0,49)
+    rand_number = random.randint(0, 49)
     word = top50[rand_number]
     print(word, rand_number)
-    for i in range(len(word)):
-        print('_', end=' ')
-    while letter != '!' and score > 0:
+
+    letter = ''
+    characters = []
+    for char in word:
+        characters.append('_')
+
+    while letter != '!' and score >= 0:
+        print(*characters, sep=' ')
         letter = input('\nGuess a letter: ')
-        score -= 1
-
-
-
-
-
-
+        i = 0
+        guess_right = False
+        for char in word:
+            if char == letter:
+                characters[i] = letter
+                i += 1
+                guess_right = True
+            else:
+                i += 1
+        if guess_right:
+            score += 1
+            print('Right !, Score is', score)
+        else:
+            score -= 1
+            if score >= 0:
+                print('Sorry, guess again. Score is', score)
+            else:
+                print('\nOh no! You lost')
+        
 # main
 def main():
     # Method to handle the filepath in both Window and Mac
@@ -114,6 +129,13 @@ def main():
 
         # Guessing Game
         guessing_game(top50)
+
+        word = 'test'
+        lista = ['_', 't', '_', 'e']
+        print(*word, sep=' ')
+        print(*lista, sep=' ')
+        word = 'test1'
+        print(*word, sep=' ')
 
 
 if __name__ == "__main__":
