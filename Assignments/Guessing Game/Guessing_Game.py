@@ -19,36 +19,32 @@ from nltk import pos_tag
 def text_processing(raw_text):
     # Tokenize
     tokens = word_tokenize(raw_text)
-
-    processed_tokens = [t.lower() for t in tokens if t.isalpha() and
-                        t not in stopwords.words('english') and
-                        len(t) > 5]
+    tokens = [token.lower() for token in tokens if token.isalpha() and
+                        token not in stopwords.words('english') and
+                        len(token) > 5]
 
     # Lemmatize
     wnl = WordNetLemmatizer()
-    lemmas = [wnl.lemmatize(t) for t in processed_tokens]
+    lemmas = [wnl.lemmatize(t) for t in tokens]
     unique_lemmas = list(set(lemmas))
 
     # POS Tagging in unique_lemmas
-    unique_tags = pos_tag(unique_lemmas)
-
+    tags = pos_tag(unique_lemmas)
     print('\nFirst 20 tagged items in unique_lemmas: ')
     for i in range(0, 20):
-        print(unique_tags[i])
+        print(tags[i])
 
     # List of nouns in lemmas:
     tags = pos_tag(lemmas)
-
     nouns = []
     for token, pos in tags:
         if pos in ['NN', 'NNS', 'NNP', 'NNPS']:
             nouns.append(token)
 
-    print('\nNumber of tokens: ', len(processed_tokens))
-    print('Number of nouns: ', len(nouns))
+    print('\nNumber of tokens: ', len(tokens))
+    print('Number of nouns in lemmas: ', len(nouns))
 
-    return processed_tokens, nouns, lemmas
-
+    return tokens, nouns
 
 # main
 def main():
@@ -69,25 +65,26 @@ def main():
         unique_tokens = set(tokens)
         print('Lexical diversity: %.2f' % (len(unique_tokens) / len(tokens)))
 
-        processed_tokens, nouns, lemmas = text_processing(raw_text)
+        tokens, nouns = text_processing(raw_text)
 
-        # The nouns list was extract from lemmas.
-        # Word in lemmas form is different from original form in token.
-        # So some nouns in nouns_dict have count 0
-        print('Noun List: ', nouns[:10])
+        # Make dictionary{noun: count number of noun in tokens)
         nouns_dict = {}
-        for noun in nouns:
+
+        for noun in nouns: # Initial the dictionary. Remove the duplicate
             if noun not in nouns_dict:
-                nouns_dict[noun] = 1
-            else:
-                nouns_dict[noun] += 1
+                nouns_dict[noun] = 0
+
+        for token in tokens: # Count of noun in tokens
+            if token in nouns_dict:
+                nouns_dict[token] += 1
+
         i = 0
+        print('\nThe 50 most common word:')
         for noun in sorted(nouns_dict, key=nouns_dict.get, reverse=True):
             print(noun, ':', nouns_dict[noun])
             i += 1
-            if i > 20:
+            if i > 50:
                 break
-
 
 if __name__ == "__main__":
     main()
