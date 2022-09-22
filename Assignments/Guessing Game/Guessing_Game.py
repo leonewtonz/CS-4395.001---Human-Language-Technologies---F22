@@ -62,29 +62,55 @@ def guessing_game(top50):
     characters = []
     for char in word:
         characters.append('_')
-
+    print(*characters, sep=' ')
+    
     while letter != '!' and score >= 0:
-        print(*characters, sep=' ')
-        letter = input('\nGuess a letter: ')
-        i = 0
-        guess_right = False
-        for char in word:
-            if char == letter:
-                characters[i] = letter
-                i += 1
-                guess_right = True
+
+        # print(*characters, sep=' ')
+
+        if '_' in characters:
+            # print(*characters, sep=' ')
+            letter = input('\nGuess a letter: ')
+            if letter == '!':
+                break
             else:
-                i += 1
-        if guess_right:
-            score += 1
-            print('Right !, Score is', score)
+                i = 0
+                guess_right = False
+                for char in word: # End of this i will cal the score for True or False
+                    if char == letter:
+                        characters[i] = letter
+                        i += 1
+                        guess_right = True
+                    else:
+                        i += 1
+
+                if guess_right:
+                        score += 1
+                        print('Right! Score is', score)
+                        print(*characters, sep=' ')
+                else:
+                    score -= 1
+                    if score >= 0:
+                        print('Sorry, guess again. Score is', score)
+                        print(*characters, sep=' ')
+                    else:
+                        print('\n________YOU LOSE________')
         else:
-            score -= 1
-            if score >= 0:
-                print('Sorry, guess again. Score is', score)
-            else:
-                print('\nOh no! You lost')
-        
+            print('\n________YOU SOLVED IT________')
+            print('Current score:', score)
+            print('\nGuess another word')
+
+            # score = 5 # Becasue we want to keep current to keep going
+            rand_number = random.randint(0, 49)
+            word = top50[rand_number]
+            print(word, rand_number)
+
+            characters = []
+            for char in word:
+                characters.append('_')
+            print(*characters, sep=' ')
+
+
 # main
 def main():
     # Method to handle the filepath in both Window and Mac
