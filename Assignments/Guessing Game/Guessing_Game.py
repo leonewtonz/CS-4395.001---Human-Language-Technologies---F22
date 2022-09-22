@@ -63,7 +63,7 @@ def guessing_game(top50):
     for char in word:
         characters.append('_')
     print(*characters, sep=' ')
-    
+
     while letter != '!' and score >= 0:
 
         # print(*characters, sep=' ')
@@ -74,27 +74,30 @@ def guessing_game(top50):
             if letter == '!':
                 break
             else:
-                i = 0
-                guess_right = False
-                for char in word: # End of this i will cal the score for True or False
-                    if char == letter:
-                        characters[i] = letter
-                        i += 1
-                        guess_right = True
-                    else:
-                        i += 1
+                if letter not in characters:
+                    i = 0
+                    guess_right = False
+                    for char in word:
+                        if char == letter:
+                            characters[i] = letter
+                            i += 1
+                            guess_right = True
+                        else:
+                            i += 1
 
-                if guess_right:
-                        score += 1
-                        print('Right! Score is', score)
-                        print(*characters, sep=' ')
-                else:
-                    score -= 1
-                    if score >= 0:
-                        print('Sorry, guess again. Score is', score)
-                        print(*characters, sep=' ')
+                    if guess_right:
+                            score += 1
+                            print('Right! Score is', score)
+                            print(*characters, sep=' ')
                     else:
-                        print('\n________YOU LOSE________')
+                        score -= 1
+                        if score >= 0:
+                            print('Sorry, guess again. Score is', score)
+                            print(*characters, sep=' ')
+                        else:
+                            print('\n________YOU LOSE________')
+                else:
+                    print('Letter', letter, ': has been discovered. Score is', score)
         else:
             print('\n________YOU SOLVED IT________')
             print('Current score:', score)
