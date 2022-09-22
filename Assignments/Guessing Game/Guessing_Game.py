@@ -8,6 +8,7 @@
 import sys
 import os
 import nltk
+import random
 
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -20,8 +21,8 @@ def text_processing(raw_text):
     # Tokenize
     tokens = word_tokenize(raw_text)
     tokens = [token.lower() for token in tokens if token.isalpha() and
-                        token not in stopwords.words('english') and
-                        len(token) > 5]
+              token not in stopwords.words('english') and
+              len(token) > 5]
 
     # Lemmatize
     wnl = WordNetLemmatizer()
@@ -45,6 +46,29 @@ def text_processing(raw_text):
     print('Number of nouns in lemmas: ', len(nouns))
 
     return tokens, nouns
+
+
+# Guessing game function
+def guessing_game(top50):
+    score = 5
+    print("\n\nLet's play a word of guessing game!")
+    print('Starting score: 5')
+
+    letter = ''
+    characters = ''
+    rand_number = random.randint(0,49)
+    word = top50[rand_number]
+    print(word, rand_number)
+    for i in range(len(word)):
+        print('_', end=' ')
+    while letter != '!' and score > 0:
+        letter = input('\nGuess a letter: ')
+        score -= 1
+
+
+
+
+
 
 # main
 def main():
@@ -70,21 +94,27 @@ def main():
         # Make dictionary{noun: count number of noun in tokens)
         nouns_dict = {}
 
-        for noun in nouns: # Initial the dictionary. Remove the duplicate
+        for noun in nouns:  # Initial the dictionary. Remove the duplicate
             if noun not in nouns_dict:
                 nouns_dict[noun] = 0
 
-        for token in tokens: # Count of noun in tokens
+        for token in tokens:  # Count of noun in tokens
             if token in nouns_dict:
                 nouns_dict[token] += 1
 
         i = 0
+        top50 = []
         print('\nThe 50 most common word:')
         for noun in sorted(nouns_dict, key=nouns_dict.get, reverse=True):
             print(noun, ':', nouns_dict[noun])
+            top50.append(noun)
             i += 1
-            if i > 50:
+            if i >= 50:
                 break
+
+        # Guessing Game
+        guessing_game(top50)
+
 
 if __name__ == "__main__":
     main()
