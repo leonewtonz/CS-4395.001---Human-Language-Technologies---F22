@@ -20,6 +20,11 @@ from nltk import pos_tag
 def text_processing(raw_text):
     # Tokenize
     tokens = word_tokenize(raw_text)
+
+    # Lower-case raw text
+    # Reduce tokens to only those that are alpha
+    # Not in the NLTK stopwords
+    # Have length > 5
     tokens = [token.lower() for token in tokens if token.isalpha() and
               token not in stopwords.words('english') and
               len(token) > 5]
@@ -27,21 +32,27 @@ def text_processing(raw_text):
     # Lemmatize
     wnl = WordNetLemmatizer()
     lemmas = [wnl.lemmatize(t) for t in tokens]
-    unique_lemmas = list(set(lemmas))
+    unique_lemmas = list(set(lemmas))  # Make unique
 
-    # POS Tagging in unique_lemmas
+    # POS Tagging the unique_lemmas
     tags = pos_tag(unique_lemmas)
     print('\nFirst 20 tagged items in unique_lemmas: ')
     for i in range(0, 20):
         print(tags[i])
 
-    # List of nouns in lemmas:
+    # List of nouns in lemmas
+    # This nouns list will content duplicate elements.
+    # It is because many words will end up in the same form.
+    # after we lemmatize the tokens. For example: 'contraction'. Check Debug 1
+
+    # Nouns mean any word have tags: NN, NNS, NNP, NNPS
     tags = pos_tag(lemmas)
     nouns = []
     for token, pos in tags:
         if pos in ['NN', 'NNS', 'NNP', 'NNPS']:
             nouns.append(token)
 
+    # print('Content of nouns: ', nouns[:10]) #___Debug 1___#
     print('\nNumber of tokens: ', len(tokens))
     print('Number of nouns in lemmas: ', len(nouns))
 
@@ -50,45 +61,48 @@ def text_processing(raw_text):
 
 # Guessing game function
 def guessing_game(top50):
-    score = 5
+    score = 5  # Starting points
     print("\n\nLet's play a word of guessing game!")
     print('Starting score: 5')
 
+    # Create a random number from 0-49 inclusive.
+    # These number 0-49 will be used as index to pick word from top50
     rand_number = random.randint(0, 49)
     word = top50[rand_number]
-    print(word, rand_number)
+    # print(word, rand_number) # Debug 2
 
-    letter = ''
-    characters = []
-    for char in word:
+    letter = ''  # Container for input letter
+    characters = []  # Container for 'ongoing' word. Use to check the progress of the game
+    for char in word:  # Initialize with "underscore space" and print them out
         characters.append('_')
     print(*characters, sep=' ')
 
-    while letter != '!' and score >= 0:
-
-        # print(*characters, sep=' ')
-
+    while letter != '!' and score >= 0: # Game end when score negative or user enter '!'
+        # Word guess correctly.
+        # Let user know.
+        # Show current score.
+        # Game continue with another random word from top50
         if '_' in characters:
-            # print(*characters, sep=' ')
             letter = input('\nGuess a letter: ')
-            if letter == '!':
+            if letter == '!':  # Game end when user enter '!'
                 break
-            else:
+            else:  # Game in progress.
                 if letter not in characters:
                     i = 0
                     guess_right = False
                     for char in word:
                         if char == letter:
-                            characters[i] = letter
-                            i += 1
+                            characters[i] = letter  # Save correctly guessed letter in characters
+                            i += 1  # Move to next index in characters list
                             guess_right = True
                         else:
                             i += 1
 
+                    # Calculate the score and output feedback for user
                     if guess_right:
-                            score += 1
-                            print('Right! Score is', score)
-                            print(*characters, sep=' ')
+                        score += 1
+                        print('Right! Score is', score)
+                        print(*characters, sep=' ')
                     else:
                         score -= 1
                         if score >= 0:
@@ -97,13 +111,13 @@ def guessing_game(top50):
                         else:
                             print('\n________YOU LOSE________')
                 else:
+                    # Prevent increasing score when user re-input correctly guessed letter
                     print('Letter', letter, ': has been discovered. Score is', score)
         else:
             print('\n________YOU SOLVED IT________')
             print('Current score:', score)
             print('\nGuess another word')
 
-            # score = 5 # Becasue we want to keep current to keep going
             rand_number = random.randint(0, 49)
             word = top50[rand_number]
             print(word, rand_number)
@@ -133,22 +147,26 @@ def main():
         unique_tokens = set(tokens)
         print('Lexical diversity: %.2f' % (len(unique_tokens) / len(tokens)))
 
+        # Preprocessing
         tokens, nouns = text_processing(raw_text)
 
         # Make dictionary{noun: count number of noun in tokens)
         nouns_dict = {}
 
-        for noun in nouns:  # Initial the dictionary. Remove the duplicate
+        # Remove the duplicate and initialize count=0 for nouns dictionary
+        for noun in nouns:
             if noun not in nouns_dict:
                 nouns_dict[noun] = 0
 
-        for token in tokens:  # Count of noun in tokens
+        # Count of noun in tokens
+        for token in tokens:
             if token in nouns_dict:
                 nouns_dict[token] += 1
 
+        # Print out the 50 most common words and save to top50 list
         i = 0
         top50 = []
-        print('\nThe 50 most common word:')
+        print('\nThe 50 most common words:')
         for noun in sorted(nouns_dict, key=nouns_dict.get, reverse=True):
             print(noun, ':', nouns_dict[noun])
             top50.append(noun)
@@ -158,13 +176,6 @@ def main():
 
         # Guessing Game
         guessing_game(top50)
-
-        word = 'test'
-        lista = ['_', 't', '_', 'e']
-        print(*word, sep=' ')
-        print(*lista, sep=' ')
-        word = 'test1'
-        print(*word, sep=' ')
 
 
 if __name__ == "__main__":
