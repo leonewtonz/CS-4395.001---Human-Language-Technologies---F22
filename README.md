@@ -50,4 +50,4 @@ PropBank and semantic parsing techniques that employ them
 	+	Lemmatizing
 	+	POS Tagging
 -	Creating simple Word Guessing Game
--	Link for source code [Word_Guessing_Game](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Guessing%20Game/Guessing_Game.py)
+-	Link for source code [Word_Guessing_Game](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Word%20Guessing%20Game/Word_Guessing_Game.py)
