@@ -1,5 +1,6 @@
 # CS 4395.001 - NLP
-# Leo Nguyen
+# Dr. Karen Mazidi
+# Author: Leo Nguyen
 # NetID: ldn190002
 
 # Porfolio Chapter 5: Word Guess Game
