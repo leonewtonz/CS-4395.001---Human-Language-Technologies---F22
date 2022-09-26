@@ -47,7 +47,7 @@ def text_processing(raw_text):
     # after we lemmatize the tokens. For example: 'contraction'. Check Debug 1
 
     # Nouns mean any word have tags: NN, NNS, NNP, NNPS
-    tags = pos_tag(lemmas)
+    # tags = pos_tag(lemmas)
     nouns = []
     for token, pos in tags:
         if pos in ['NN', 'NNS', 'NNP', 'NNPS']:
@@ -55,7 +55,7 @@ def text_processing(raw_text):
 
     # print('Content of nouns: ', nouns[:10]) #___Debug 1___#
     print('\nNumber of tokens: ', len(tokens))
-    print('Number of nouns in lemmas: ', len(nouns))
+    print('Number of nouns in unique_lemmas: ', len(nouns))
 
     return tokens, nouns
 
