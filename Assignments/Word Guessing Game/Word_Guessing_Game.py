@@ -154,9 +154,9 @@ def main():
         # Make dictionary{noun: count number of noun in tokens)
         nouns_dict = {}
 
-        # Remove the duplicate and initialize count=0 for nouns dictionary
+        # Initialize count=0 for nouns dictionary.
+        # Nouns list already a unique set as it was extract from unique_lemmas
         for noun in nouns:
-            if noun not in nouns_dict:
                 nouns_dict[noun] = 0
 
         # Count of noun in tokens
