@@ -9,9 +9,16 @@
 import os
 import nltk
 from nltk import word_tokenize
+from nltk import sent_tokenize
 from nltk.util import ngrams
 import pickle
 import math
+
+# Function to handle the filepath in both Window and Mac
+def read_file(filepath):
+    with open(os.path.join(os.getcwd(), filepath), 'r', encoding="utf-8") as f:
+        input_file = f.read()
+    return input_file
 
 
 # Function to computure the probalities
@@ -53,39 +60,44 @@ def main():
     with open('italian_bi_dict.pickle', 'rb') as handle:
         italian_bi_dict = pickle.load(handle)
 
-    print(list(english_uni_dict.items())[:4])  # debug
 
     # V is the total vocabulary size (add the lengths of the 3 unigram dictionaries)
     v = len(english_uni_dict) + len(french_uni_dict) + len(italian_uni_dict)
 
-# Debug
-    # test_text = "Signora Presidente , vorrei sapere perché questo Parlamento non rispetta le norme in materia di salute e sicurezza che esso stesso approva ."
-    test_text = "Is there a member who wishes to speak on behalf of this Group to propose this ?"
-    # test_text = "C ' est en effet tout à fait dans la ligne des positions que notre Parlement a toujours adoptées ."
-# Debug
+    # Calculate the language probability for each line in test file
+    # fp = 'ngram_files/LangId.test'
+    # test_text = read_file(fp)
+    # sents = sent_tokenize(test_text)
+    # print(len(sents))
 
-    probab = []
+    sents = open("ngram_files/LangId.test", "r")
+   
+    i = 1
+    for sent in sents:
+        probab = []
 
-    english_probab  = compute_prob(test_text, english_uni_dict, english_bi_dict, v)
-    probab.append(english_probab)
+        english_probab  = compute_prob(sent, english_uni_dict, english_bi_dict, v)
+        probab.append(english_probab)
 
-    french_probab   = compute_prob(test_text, french_uni_dict, french_bi_dict, v)
-    probab.append(french_probab)
+        french_probab   = compute_prob(sent, french_uni_dict, french_bi_dict, v)
+        probab.append(french_probab)
 
-    italian_probab  = compute_prob(test_text, italian_uni_dict, italian_bi_dict, v)
-    probab.append(italian_probab)
+        italian_probab  = compute_prob(sent, italian_uni_dict, italian_bi_dict, v)
+        probab.append(italian_probab)
 
-    
-    max_probab = max(probab)
+        max_probab = max(probab)
 
-    if english_probab == max_probab:
-        print('Text is in English')
+        if english_probab == max_probab:
+            print(i, 'English')
+            i += 1
 
-    if french_probab == max_probab:
-        print('Text is in French')
+        elif french_probab == max_probab:
+            print(i, 'French')
+            i += 1
 
-    if italian_probab == max_probab:
-        print('Text is in Italian')
+        elif italian_probab == max_probab:
+            print(i, 'Italian')
+            i += 1
 
 
 
