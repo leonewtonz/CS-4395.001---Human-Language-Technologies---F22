@@ -49,9 +49,16 @@ PropBank and semantic parsing techniques that employ them
 	+	Tokenizing
 	+	Lemmatizing
 	+	POS Tagging
--	Creating simple Word Guessing Game
--	Link for source code [Word_Guessing_Game](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Word%20Guessing%20Game/Word_Guessing_Game.py)
+-	Creating simple Word Guessing Game. Link for source code [Word_Guessing_Game](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Word%20Guessing%20Game/Word_Guessing_Game.py)
 
 
 ## 5. WordNet
--	Exploring WordNet features. Link for documentation [WordNet.pdf]
+-	Exploring WordNet features. Link for documentation [WordNet.pdf](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/WordNet/WordNet.pdf)
+
+## 6. Ngrams
+-	Create unigrams and bigrams dictionaries for English, French, Italian. Then save them to pickle. Click here for source code [program1.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/N-gram/program1.py)
+	+	Note: 
+		*	Make sure 3 filenames are in the ngram_files folder. And this folder is in the same directory of program1.py.
+    	*	For example: "ngram_files/LangId.train.English"
+ -	Unpacking the pickle, calculating the probability for each language, outputting the accuracy and line of incorrectly classified items. Click for for source code [program2.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/N-gram/program2.py)
+-	An overview of ngram. [Overview of Ngrams](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/N-gram/Overview%20of%20Ngrams.pdf)
