@@ -42,10 +42,16 @@ def dictionary(language):
 def main():
 
     # Create unigrams and bigrams dictionary for English, French, Italian
+    # Make sure the 3 filenames are in the ngram_files folder.
+    # And this folder is in the same directory of program1.py.
+    # For example: "ngram_files/LangId.train.English"
+    
     english_uni_dict, english_bi_dict = dictionary('LangId.train.English')
     print('Enlgish dict created')  # debug
+
     french_uni_dict, french_bi_dict = dictionary('LangId.train.French')
     print('French dict created')  # debug
+
     italian_uni_dict, italian_bi_dict = dictionary('LangId.train.Italian')
     print('Italian dict created')  # debug
 
@@ -74,7 +80,6 @@ def main():
         pickle.dump(italian_bi_dict, handle)
 
     print('Italian pickle created')  # debug
-
 
 
 if __name__ == "__main__":

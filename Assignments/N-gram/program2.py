@@ -14,12 +14,6 @@ from nltk.util import ngrams
 import pickle
 import math
 
-# Function to handle the filepath in both Window and Mac
-def read_file(filepath):
-    with open(os.path.join(os.getcwd(), filepath), 'r', encoding="utf-8") as f:
-        input_file = f.read()
-    return input_file
-
 
 # Function to computure the probalities
 def compute_prob(text, unigram_dict, bigram_dict, v):
@@ -64,14 +58,11 @@ def main():
     # V is the total vocabulary size (add the lengths of the 3 unigram dictionaries)
     v = len(english_uni_dict) + len(french_uni_dict) + len(italian_uni_dict)
 
-    # Calculate the language probability for each line in test file
-    # fp = 'ngram_files/LangId.test'
-    # test_text = read_file(fp)
-    # sents = sent_tokenize(test_text)
-    # print(len(sents))
+    # Calculate the language probability for each sentence in test file
+    sents = list(open('ngram_files/LangId.test', 'r'))
 
-    sents = open("ngram_files/LangId.test", "r")
-   
+    probab_result = open("output.txt", "w")  # This is the output file for calculated probabilities of each language     
+
     i = 1
     for sent in sents:
         probab = []
@@ -87,19 +78,37 @@ def main():
 
         max_probab = max(probab)
 
+        # Write the highest probability to file
         if english_probab == max_probab:
-            print(i, 'English')
+            probab_result.write(str(i) + ' English\n')
             i += 1
-
         elif french_probab == max_probab:
-            print(i, 'French')
+            probab_result.write(str(i) + ' French\n') 
             i += 1
-
         elif italian_probab == max_probab:
-            print(i, 'Italian')
+            probab_result.write(str(i) + ' Italian\n') 
             i += 1
 
+    probab_result.close()
 
+    # Compute the accuracy
+    output      = list(open("output.txt", "r"))
+    solution    = list(open('ngram_files/LangId.sol', 'r'))
+
+    num_correct = 0
+    incorrect_lines = []
+    for i in range(len(output)):
+        if output[i] == solution[i]:
+            num_correct += 1
+        else:
+            incorrect_lines.append(output[i].replace("\n", ""))
+
+    accuracy = (num_correct/len(solution))*100
+
+    print('Accuracy: %.2f percent' % accuracy)
+    print('List of incorrectly classified items:')
+    for item in incorrect_lines:
+        print(item)
 
 if __name__ == "__main__":
     main()
