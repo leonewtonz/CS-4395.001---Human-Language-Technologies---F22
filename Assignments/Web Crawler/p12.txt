@@ -1,0 +1,791 @@
+
+ 
+ 
+ 
+  BEGIN WAYBACK TOOLBAR INSERT  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 9 captures 
+ 21 Sep 2013 - 27 Oct 2021 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  NEXT/PREV MONTH NAV AND MONTH INDICATOR  
+ 
+ Dec 
+ AUG 
+ Oct 
+ 
+  NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR  
+ 
+ 
+ 03 
+ 
+ 
+  NEXT/PREV YEAR NAV AND YEAR INDICATOR  
+ 
+ 2017 
+ 2020 
+ 2021 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ success 
+ fail 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   About this capture 
+ 
+ 
+ 
+ 
+ 
+ COLLECTED BY 
+ 
+ 
+ 
+		Organization:  Archive Team 
+ 
+ 
+  Formed in 2009, the Archive Team (not to be confused with the archive.org Archive-It Team) is a rogue archivist collective dedicated to saving copies of rapidly dying or deleted websites for the sake of history and digital heritage. The group is 100% composed of volunteers and interested parties, and has expanded into a large amount of related projects for saving online and digital history.
+ 
+History is littered with hundreds of conflicts over the future of a community, group, location or business that were "resolved" when one of the parties stepped ahead and destroyed what was there. With the original point of contention destroyed, the debates would fall to the wayside. Archive Team believes that by duplicated condemned data, the conversation and debate can continue, as well as the richness and insight gained by keeping the materials. Our projects have ranged in size from a single volunteer downloading the data to a small-but-critical site, to over 100 volunteers stepping forward to acquire terabytes of user-created data to save for future generations.
+ 
+The main site for Archive Team is at  archiveteam.org  and contains up to the date information on various projects, manifestos, plans and walkthroughs.
+ 
+This collection contains the output of many Archive Team projects, both ongoing and completed. Thanks to the generous providing of disk space by the Internet Archive, multi-terabyte datasets can be made available, as well as in use by the  Wayback Machine , providing a path back to lost websites and work. 
+ 
+Our collection has grown to the point of having sub-collections for the type of data we acquire. If you are seeking to browse the contents of these collections, the Wayback Machine is the best first stop. Otherwise, you are free to dig into the stacks to see what you may find.
+ 
+ The Archive Team Panic Downloads  are full pulldowns of currently extant websites, meant to serve as emergency backups for needed sites that are in danger of closing, or which will be missed dearly if suddenly lost due to hard drive crashes or server failures. 
+ 
+ 
+ 
+ 
+ 
+ Collection:  ArchiveBot: The Archive Team Crowdsourced Crawler 
+ 
+ 
+	  ArchiveBot is an IRC bot designed to automate the archival of smaller websites (e.g. up to a few hundred thousand URLs). You give it a URL to start at, and it grabs all content under that URL, records it in a WARC, and then uploads that WARC to ArchiveTeam servers for eventual injection into the Internet Archive (or other archive sites).
+ 
+To use ArchiveBot, drop by #archivebot on EFNet. To interact with ArchiveBot, you issue commands by typing it into the channel. Note you will need channel operator permissions in order to issue archiving jobs. The dashboard shows the sites being downloaded currently.
+ 
+There is a dashboard running for the archivebot process at  http://www.archivebot.com .
+ 
+ArchiveBot's source code can be found at  https://github.com/ArchiveTeam/ArchiveBot .
+	 
+ 
+ 
+ 
+ 
+ TIMESTAMPS 
+ 
+ 
+ 
+ 
+ 
+ The Wayback Machine - https://web.archive.org/web/20200803041401/https://entertainment.inquirer.net/113303/keanu-reeves-on-directing-for-the-first-time 
+ 
+  END WAYBACK TOOLBAR INSERT  
+ 
+ 
+  Start Alexa Certify Javascript  
+ 
+ 
+  End Alexa Certify Javascript  
+ 
+ 
+ 
+ 
+ 
+  Anchor Ads   
+ 
+ 
+ 
+  Advenue DMP Container - INQUIRER.net Container  
+ 
+  End Advenue DMP Container  
+ 
+  Google Tag Manager (noscript)  
+ 
+  End Google Tag Manager (noscript)  
+ 
+ 
+ 
+ 
+ 
+  NAV  
+ 
+ 
+ 
+ menu 
+ 
+ 
+			Sections
+		 
+ 
+ 
+ 
+ 
+ 
+ 
+ search 
+ 
+ 
+ 
+ Today's Paper 
+ 
+ 
+ insert_drive_file 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  /NAV  
+  MOBILE NAV  
+ 
+ 
+ Close   
+ 
+ 
+ 
+ INQUIRER.NET 
+ NEWS 
+ OPINION 
+ SPORTS 
+ LIFESTYLE 
+ ENTERTAINMENT 
+ BUSINESS 
+ TECHNOLOGY 
+ GLOBAL NATION 
+ USA & CANADA 
+ POP 
+ VIDEOS 
+ ESPORTS 
+ BANDERA 
+ CDN 
+ LIBRE 
+ PBA 
+ MOTIONCARS 
+ MY INQUIRER 
+ ADVERTISE 
+ ESPORTS 
+ 
+ 
+ 
+  MOBILE NAV END 
+ 
+ 
+ 
+ menu 
+ 
+ 
+ 
+ 
+ 
+ 
+ search 
+ 
+ 
+ 
+ 
+ 
+ 
+  /NAV  
+  LEADERBOARD  
+ 
+  lb1  
+ 
+ 
+  /LEADERBOARD  
+  MAIN NAV  
+ 
+ 
+ NEWS 
+ OPINION 
+ SPORTS 
+ LIFESTYLE 
+ ENTERTAINMENT 
+ BUSINESS 
+ TECHNOLOGY 
+ GLOBAL NATION 
+ 
+ 
+ 
+  /MAIN NAV  
+  SKIN AD  
+  EE  
+ 
+ 
+  left_skin  
+ 
+ 
+ 
+  right_skin  
+ 
+ 
+ 
+ 
+  Article Level  
+ 
+ 
+  HEAD  
+ 
+ 
+ entertainment /  Columns 
+   Columns 
+ 
+ 
+ 
+ 
+  Only In Hollywood 
+ Keanu Reeves on directing for the first time 
+ 
+ 
+ 
+ 
+ By:   Ruben V. Nepales   - Columnist							 
+   Philippine Daily Inquirer  / 11:40 PM September 20, 2013 
+ 
+ 
+ 
+ 
+ 
+ 
+  /HEAD  
+ 
+  FEATURED IMAGE  
+  /FEATURED IMAGE  
+  BODY WRAP  
+ 
+  CONTENT  id="outbrain_readmore" 
+ 
+ 
+ REEVES. Helms the China-US actioner, “Man of Tai Chi.” Photo by Ruben Nepales 
+ LOS ANGELES—“Awesome!” Keanu Reeves said in an intentionally exaggerated manner several times in our recent talk, and he was Ted Logan again from his “Bill and Ted’s Excellent Adventure” movies. 
+ But, Keanu has come a long way from that goofy time-traveling, clueless teen. He makes his directorial debut with “Man of Tai Chi,” not exactly a simple project. A film that pays homage to the martial arts film genre, “Man of Tai Chi” is a China-US coproduction that was shot in Beijing and Hong Kong. 
+ ADVERTISEMENT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Dressed in his trademark black from head to toe, Keanu is a lot more comfortable at interviews these days, but he still tends to look down, especially when he smiles, and avoids eye contact when he speaks. With his longish hair, beard and mustache, the actor/musician/filmmaker may be 49, but age has been kind to him. 
+ While Keanu is also in front of the cameras in “Man of Tai Chi,” the title character is played by Tiger Hu Chen, a stuntman who became the star’s friend when they shot “The Matrix” films. In his first starring role, Tiger portrays a Tai Chi expert whose skills land him in an underworld fight club. FEATURED STORIES 
+ ENTERTAINMENT 
+ WATCH: Jane De Leon releases own ‘How You Like That’ dance cover 
+ 
+ ENTERTAINMENT 
+ K Brosas silences basher by reporting them to their employer 
+ 
+ ENTERTAINMENT 
+ Allan K draws flak for comment on suicide 
+ 
+ Keanu was quick to answer when asked if tackling an action-thriller, not a simple intimate story, fazed him. “No, it was very exciting,” he stressed. “On paper, if you were going to say, ‘OK, you are going to direct for the first time—in two different languages, a coproduction in China that’s never been done before,’ it might look daunting. But, I had a story to tell. So, to me, these challenges were opportunities being a storyteller in the collaborative art form of cinema—whether it was working with the actors or the crew.” 
+ “I had translators, but it was just about communicating,” he explained about how he dealt with the Chinese talents and crew. “That’s your job—to communicate a story, to understand what you’re saying or be understood! It just took a little longer.”   
+ Double feature 
+ He recalled watching his first martial arts movie with relish. “The first one I remember is ‘Five Fingers of Death.’ I don’t know who directed it (Chang-hwa Jeong did)—I just remember a guy jumping off the floor, coming down and taking this guy’s eyes out, and they came out! It was in Times Square in Manhattan, and the movie was part of a double feature with ‘Enter the Dragon’—and it was awesome!” 
+ “I am really good at movie kung fu,” he described his fighting skills. “In a real fight, I have a strong will, but my skill is not that high.” 
+ Of the many directors he has worked with, Keanu hesitated at first to name one who made a mark on him. “I have worked with so many but if I have to…arrgggghhh! Today, I am going to pick the maestro, Bernardo Bertolucci—No. 1. He makes me want to cry. He was practical in directing—‘Put your hand over here’ or ‘Do this.’ He was so in the moment, so alive and thoughtful. He wanted to collaborate. He was interested. 
+ “He could excite and inspire you, and he knew when to pull back! He was so many things for the limited time that I got to work with him. He always stayed with me.” 
+ ADVERTISEMENT 
+   
+ 
+ 
+ Not many people know that Keanu has Asian heritage. “My grandmother is Chinese and Hawaiian, so I was around Chinese art, furniture and cuisine when I was growing up,” he said. “I remember that  I really liked haikus. I also liked animé and kung fu movies—so, yeah, I was exposed to Asian culture since I was a kid.” 
+ Asked for an update on “47 Ronin,” one of his upcoming films, Keanu answered, “I knew that we were reinterpreting the story. In terms of magic swords and fire-breathing dragons, the movie went farther than I thought it was going to go.” 
+ “And, for me to be the outsider as a way to tell this story to foreigners, so that they could relate to me as they go on this journey of the Bushido, I thought that was nice. There’s an intention by the director (Carl Rinsch), even in the fantastical, to pay respects to the Japanese depiction.” 
+ Does he miss his band, Dogstar? “I miss the fraternity of the band, the moment when you write a song, the moment in the room when you create something new with your bandmates that you are all excited about, then playing that song live is an amazing experience—so, yeah, I miss performing!” 
+ He wouldn’t mind having a band again. “I have to find a band,” he remarked. “It’s tough. You can’t just dial up a band. You can work toward creating one but, right now, I’m focusing on that!” 
+   
+ E-mail  [email protected]  Follow him at twitter.com/nepalesruben. 
+ 
+ Read Next 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. Lipin, September 21, 2013 
+ 
+ 
+ 
+  MORE STORIES 2018  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ EDITORS' PICK 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Duterte agrees to give financial aid to all virus-hit health workers 
+ 
+ 
+ 
+ 
+ 
+ 
+ Smart 5G goes live 
+ 
+ 
+ 
+ 
+ 
+ 
+ Duterte heeds frontliners’ plea, reimposes MECQ in Metro Manila, other areas Aug. 4 -18 
+ 
+ 
+ 
+ 
+ 
+ 
+ Water remains our saving grace right now 
+ 
+ 
+ 
+ 
+ 
+ 
+ Get a hold of your home tech needs this #SMCyberMonth2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ ‘Do not try to demean government,’ President tells frontliners for airing pleas publicly 
+ 
+ 
+ 
+  /LATEST AND MOST READ  
+  LATEST AND MOST READ  
+ 
+ MOST READ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Duterte heeds frontliners’ plea, reimposes MECQ in Metro Manila, other areas Aug. 4 -18 
+ 
+ 
+ 
+ 
+ 
+ 
+ ‘Do not try to demean government,’ President tells frontliners for airing pleas publicly 
+ 
+ 
+ 
+ 
+ 
+ 
+ Want higher pay? Join the police force, Duterte tells nurses 
+ 
+ 
+ 
+ 
+ 
+ 
+ COVID-19 task force ready to enforce ECQ in NCR 
+ 
+ 
+ 
+  /LATEST AND MOST READ  
+  Please implement on Entertainment only, remove the twitter handle after the byline in #byline_share
+				<div id="follow-this">Follow <a href="#" target="_blank">@FMangosingINQ</a> on Twitter</div>
+				 
+ 
+ 
+ Don't miss out on the latest news and information.      
+ 
+ 
+ 
+ View comments 
+ 
+ 
+ 
+ 
+ Subscribe to  INQUIRER PLUS  to get access to The Philippine Daily Inquirer & other 70+ titles, share up to 5 gadgets, listen to the news, download as early as 4am & share articles on social media. Call 896 6000. 
+ 
+ 
+  TAGS  
+ 
+ TAGS:  Entertainment ,  Hollywood ,  Keanu Reeves ,  Ted Logan 
+ 
+  TAGS END  
+ 
+    CONTACT US  
+ 
+ For feedback, complaints, or inquiries,  contact us. 
+ 
+  CONTACT US END  
+ 
+  CONTENT END  
+  PSEUDO SIDE  
+ 
+ 
+ 
+ EDITORS' PICK    def is LS, life = most read  
+ MOST READ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Duterte agrees to give financial aid to all virus-hit health workers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ technology 
+ Smart 5G goes live 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Duterte heeds frontliners’ plea, reimposes MECQ in Metro Manila, other areas Aug. 4 -18 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Water remains our saving grace right now 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ technology 
+ Get a hold of your home tech needs this #SMCyberMonth2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ ‘Do not try to demean government,’ President tells frontliners for airing pleas publicly 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Duterte heeds frontliners’ plea, reimposes MECQ in Metro Manila, other areas Aug. 4 -18 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ ‘Do not try to demean government,’ President tells frontliners for airing pleas publicly 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Want higher pay? Join the police force, Duterte tells nurses 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ COVID-19 task force ready to enforce ECQ in NCR 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ opinion 
+ Why not abolish office of AFP chief? 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ newsinfo 
+ Duterte dares leftist groups: ‘Go ahead, protest to the high heavens’ 
+ August 03, 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  ARTICLE WIDESKY  
+ 
+  ss1  
+ 
+ 
+  ARTICLE WIDESKY END  
+ 
+ 
+  PSEUDO SIDE  
+ 
+ 
+  /BODY WRAP  
+ 
+  Article Level END 
+ 
+ 
+  COMMENT SECTION  
+ 
+ 
+  CONTACT US  
+ 
+ Disclaimer:  Comments do not represent the views of INQUIRER.net. We reserve the right to exclude comments which are inconsistent with our editorial standards.  FULL DISCLAIMER 
+ 
+  CONTACT US END  
+  SPOT IM  
+ 
+ 
+ 
+   
+  /SPOT IM  
+ 
+ 
+  CROWDY NEWS  
+ 
+ <center>
+		<div style="width: 300px; height: 400px;margin-top:20px;" breakingburner-widget="Inquirer/">
+		<script src="http://widget.breakingburner.com/js/jwidget.js"></script>
+		</div>
+		<iframe src="http://widget.breakingburner.com/ad/523c0dc617de85bd42000000" height="250" width="300" id="breakingburner-iframe" frameborder="no" scrolling="no"></iframe>
+		
+		
+		</center> 
+ 
+  Insticator API Fire Widget  
+  End Insticator API Fire Widget  
+ 
+  CROWDY NEWS END  
+ 
+ 
+  COMMENT SECTION END  
+ 
+  SOCIAL MEDIA STICKY  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  SOCIAL MEDIA STICKY END  
+ 
+ 
+ 
+  oop1  
+ 
+ 
+ 
+  FOOTER  
+ 
+ 
+ 
+ The Inquirer Channels 
+ 
+ News 
+ Sports 
+ Entertainment 
+ Lifestyle 
+ Technology 
+ Business 
+ Opinion 
+ Global Nation 
+ 
+ 
+ Services 
+ 
+ Mobile 
+ RSS 
+ Email Us 
+ Archive 
+ Contact Us 
+ News Letter 
+ Job Openings 
+ 
+ 
+ The Inquirer Company 
+ 
+ About INQUIRER.net 
+ About the INQUIRER 
+ User Agreement 
+ Link Policy 
+ Privacy Policy 
+ Article Index 
+ 
+ 
+ Partners 
+ 
+ Libre 
+ Hinge Inquirer 
+ Bandera 
+ Cebu Daily News 
+ DZIQ990 AM 
+ Motion Cars 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ © Copyright 1997-2020 INQUIRER.net | All Rights Reserved 
+ 
+ 
+ 
+ 
+ 
+ We use cookies to ensure you get the best experience on our website. By continuing, you are agreeing to our use of cookies. To find out more,  please click this link. 
+ 
+ 
+ I Agree 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

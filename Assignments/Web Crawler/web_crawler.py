@@ -16,6 +16,8 @@ from nltk.corpus import stopwords
 import math
 import pickle
 import wordhoard
+import socket
+
 
 
 ## Web Crawler Function
@@ -41,13 +43,17 @@ def web_crawling(starter_url):
                     break
                 print(link_str)
                 try:
-                    status_code = requests.head(link_str).status_code
+                    html = urllib.request.urlopen(link_str)
+                    status_code = html.getcode()
                     print(status_code) # debug
                     if(status_code == 200):
                         urls.append(link_str)
                         counter += 1    
-                except requests.ConnectionError:
+                except urllib.error.HTTPError:
                     pass
+                except urllib.error.URLError:
+                    pass
+
                                 
     return urls    
 
@@ -62,11 +68,8 @@ def visible(element):
 ## Wed Scraper Function
 def web_scraping(url, page_index):
 
-    session_obj = requests.Session()
-    response = session_obj.get(url, headers={"User-Agent": "Mozilla/5.0"})
-    html = response.text
-
-    # html = urllib.request.urlopen(url)
+    
+    html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, features="lxml")
     data = soup.findAll(text=True)
     result = filter(visible, data)
@@ -201,19 +204,19 @@ def main():
         page_index += 1
 
   
-    # # Preprocessing
-    # index = 1
-    # while(index < 16):
-    #     path = 'p' + str(index) + '.txt'
-    #     with open(path, 'r', encoding='utf-8') as f:
-    #         raw_text = f.read()
-    #         preprocessing(raw_text, index)
-    #         index += 1
+    # Preprocessing
+    index = 1
+    while(index < 16):
+        path = 'p' + str(index) + '.txt'
+        with open(path, 'r', encoding='utf-8') as f:
+            raw_text = f.read()
+            preprocessing(raw_text, index)
+            index += 1
 
 
-    # # 25 Important Term
-    # top25 = find_25terms()
-    # # print(top25)
+    # 25 Important Term
+    top25 = find_25terms()
+    # print(top25)
 
 
 

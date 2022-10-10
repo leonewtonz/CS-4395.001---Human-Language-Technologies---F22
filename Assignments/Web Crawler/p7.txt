@@ -1,6 +1,112 @@
 
  
+  BEGIN WAYBACK TOOLBAR INSERT  
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 30 captures 
+ 27 May 2019 - 08 Aug 2022 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  NEXT/PREV MONTH NAV AND MONTH INDICATOR  
+ 
+ May 
+ JUL 
+ Aug 
+ 
+  NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR  
+ 
+ 
+ 02 
+ 
+ 
+  NEXT/PREV YEAR NAV AND YEAR INDICATOR  
+ 
+ 2018 
+ 2019 
+ 2020 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ success 
+ fail 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   About this capture 
+ 
+ 
+ 
+ 
+ 
+ COLLECTED BY 
+ 
+ 
+ 
+ Collection:  Wikipedia Eventstream 
+ 
+ 
+ 
+ 
+ TIMESTAMPS 
+ 
+ 
+ 
+ 
+ 
+ The Wayback Machine - https://web.archive.org/web/20190702133120/http://collider.com/galleries/surprising-facts-about-keanu-reeves/ 
+ 
+  END WAYBACK TOOLBAR INSERT  
   Google Tag Manager (noscript)  
  
   End Google Tag Manager (noscript)  
