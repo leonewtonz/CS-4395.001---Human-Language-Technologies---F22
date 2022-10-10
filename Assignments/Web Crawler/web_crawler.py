@@ -16,8 +16,6 @@ from nltk.corpus import stopwords
 import math
 import pickle
 import wordhoard
-import pydictionary
-from pydictionary import dictionary
 
 
 ## Web Crawler Function
@@ -31,21 +29,26 @@ def web_crawling(starter_url):
     urls = []
     for link in soup.find_all('a'):
         link_str = str(link.get('href'))
-        if 'Matrix' in link_str or 'matrix' in link_str:
+        if 'Reeves' in link_str or 'reeves' in link_str:
             if link_str.startswith('/url?q='):
                 link_str = link_str[7:]
                 print('MOD:', link_str)
             if '&' in link_str:
                 i = link_str.find('&')
                 link_str = link_str[:i]
-            if link_str.startswith('http') and 'google' not in link_str and 'cactus.black' not in link_str:
+            if link_str.startswith('http') and 'google' not in link_str:
                 if counter == 15: #  
                     break
-                status_code = requests.head(link_str).status_code
-                # print(status_code) # debug
-                if(status_code == 200):  
-                    urls.append(link_str)
-                    counter += 1     
+                print(link_str)
+                try:
+                    status_code = requests.head(link_str).status_code
+                    print(status_code) # debug
+                    if(status_code == 200):
+                        urls.append(link_str)
+                        counter += 1    
+                except requests.ConnectionError:
+                    pass
+                                
     return urls    
 
 ## Function to determine if an element is visible
@@ -59,7 +62,11 @@ def visible(element):
 ## Wed Scraper Function
 def web_scraping(url, page_index):
 
-    html = urllib.request.urlopen(url)
+    session_obj = requests.Session()
+    response = session_obj.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    html = response.text
+
+    # html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, features="lxml")
     data = soup.findAll(text=True)
     result = filter(visible, data)
@@ -148,6 +155,9 @@ def find_25terms():
 
     top25 = []
     doc_term_weights = sorted(combine_tfidf.items(), key=lambda x:x[1], reverse=True)
+    print("\n@@@", doc_term_weights[:30])
+
+
     for tuple in doc_term_weights[:25]:
         top25.append(tuple)
 
@@ -169,14 +179,14 @@ def build_knowledge_base(top25):
         req = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/%7Bi%7D%22")
         know_base[str(i)] = req.text
 
-    print(know_base)
+    print('\n\n', know_base)
     pickle.dump(know_base, open('k_base.p', 'wb'))
 
 
 
 ## main
 def main():
-    starter_url = "https://en.wikipedia.org/wiki/The_Matrix"
+    starter_url = "https://en.wikipedia.org/wiki/Keanu_Reeves"
     
     # Web Crawler
     urls = web_crawling(starter_url)
@@ -191,23 +201,23 @@ def main():
         page_index += 1
 
   
-    # Preprocessing
-    index = 1
-    while(index < 16):
-        path = 'p' + str(index) + '.txt'
-        with open(path, 'r', encoding='utf-8') as f:
-            raw_text = f.read()
-            preprocessing(raw_text, index)
-            index += 1
+    # # Preprocessing
+    # index = 1
+    # while(index < 16):
+    #     path = 'p' + str(index) + '.txt'
+    #     with open(path, 'r', encoding='utf-8') as f:
+    #         raw_text = f.read()
+    #         preprocessing(raw_text, index)
+    #         index += 1
 
 
-    # 25 Important Term
-    top25 = find_25terms()
-    print(top25)
+    # # 25 Important Term
+    # top25 = find_25terms()
+    # # print(top25)
 
 
 
-    # Chatbot-Searchable Knowledge Base
+    # # Chatbot-Searchable Knowledge Base
     # build_knowledge_base(top25)
         
 
