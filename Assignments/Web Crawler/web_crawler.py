@@ -41,11 +41,11 @@ def web_crawling(starter_url):
             if link_str.startswith('http') and 'google' not in link_str:
                 if counter == 15: #  
                     break
-                print(link_str)
+                # print(link_str) # debug
                 try:
                     html = urllib.request.urlopen(link_str)
                     status_code = html.getcode()
-                    print(status_code) # debug
+                    # print(status_code) # debug
                     if(status_code == 200):
                         urls.append(link_str)
                         counter += 1    
@@ -84,7 +84,7 @@ def web_scraping(url, page_index):
     # print("\n________End of web_scraping________")
 
 ## Preprocessing Function
-def preprocessing(raw_text, index):
+def preprocessing(raw_text):
 
     text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
     text = ' '.join(text_chunks)
@@ -95,76 +95,6 @@ def preprocessing(raw_text, index):
         for sent in sents:
             f.write(str(sent) + '\n\n')
    
-
-## tf_dict funct
-def create_tf_dict(doc):
-    tf_dict = {}
-    tokens = word_tokenize(doc)
-    tokens = [w for w in tokens if w.isalpha() and w not in stopwords.words('english')]
-     
-    # Get term frequency
-    token_set = set(tokens)
-    tf_dict = {t:tokens.count(t) for t in token_set}
-    
-    # normalize tf by number of tokens
-    for t in tf_dict.keys():
-        tf_dict[t] = tf_dict[t] / len(tokens)
-        
-    return tf_dict
-
-## tfidf function
-def create_tfidf(tf, idf):
-    tf_idf = {}
-    for t in tf.keys():
-        tf_idf[t] = tf[t] * idf[t] 
-        
-    return tf_idf
-
-## 25 Important Terms Function
-def find_25terms():
-    vocab = set()
-    list_tf_dicts = []
-    list_tfidf = []
-
-    index = 1
-    while(index < 16):
-        path = str(index) + '.txt'
-        with open(path, 'r', encoding='utf-8') as f:
-            doc = f.read().lower()
-            doc = doc.replace('\n', ' ')
-            list_tf_dicts.append(create_tf_dict(doc))
-            index += 1
-
-    for tf in list_tf_dicts:
-        vocab = vocab.union(set(tf.keys()))
-
-    print('Number of unique words:', len(vocab))
-
-    idf_dict = {}
-    num_docs = len(list_tf_dicts)
-    vocab_by_topic = [tf.keys() for tf in list_tf_dicts]
-    for term in vocab:
-        temp = ['x' for voc in vocab_by_topic if term in voc]
-        idf_dict[term] = math.log((1+num_docs) / (1+len(temp))) 
-
-    for dict in list_tf_dicts:
-        list_tfidf.append(create_tfidf(dict, idf_dict))
-
-    combine_tfidf = {}
-    for d in list_tfidf:
-        doc_term_weights = sorted(d.items(), key=lambda x:x[1], reverse=True)
-        # print("\n@@@", doc_term_weights[:5])  # debug
-        combine_tfidf = combine_tfidf | d
-
-    top25 = []
-    doc_term_weights = sorted(combine_tfidf.items(), key=lambda x:x[1], reverse=True)
-    print("\n@@@", doc_term_weights[:30])
-
-
-    for tuple in doc_term_weights[:25]:
-        top25.append(tuple)
-
-    return top25
 
 ## Chatbot-Searchable Knowledge Base Function
 def build_knowledge_base(top25):
@@ -214,9 +144,9 @@ def main():
             index += 1
 
 
-    # 25 Important Term
-    top25 = find_25terms()
-    # print(top25)
+    # # 25 Important Term
+    # top25 = find_25terms()
+    # # print(top25)
 
 
 
