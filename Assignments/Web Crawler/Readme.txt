@@ -7,3 +7,8 @@ https://github.com/leonewtonz/NLP-Basic-Python/blob/master/Part_4-Documents/Chap
 
 3. preprocessing, remove newline, space
 https://github.com/leonewtonz/NLP-Basic-Python/blob/master/Part_1-Foundations/Chapter_03_nltk/NLTK_text_preprocessing.ipynb
+
+
+4. Check if url is good. Remove all error, bad, not exist page
+https://stackoverflow.com/questions/16778435/python-check-if-website-exists
+https://stackoverflow.com/questions/30574314/web-crawler-toomanyredirects-exceeded-30-redirects-python
