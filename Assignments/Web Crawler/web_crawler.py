@@ -16,7 +16,8 @@ from nltk.corpus import stopwords
 import pickle
 from collections import Counter
 
-
+NUM_URL = 15
+NUM_IMPORTANT_TERM = 25
 
 ## Web Crawler Function
 def web_crawling(starter_url):
@@ -36,52 +37,52 @@ def web_crawling(starter_url):
             if '&' in link_str:
                 i = link_str.find('&')
                 link_str = link_str[:i]
-            if link_str.startswith('http') and 'google' not in link_str:
-                if counter == 1: #  
-                    break
-                # print(link_str) # debug
-                try:
-                    html = urllib.request.urlopen(link_str)
-                    status_code = html.getcode()
-                    # print(status_code) # debug
-                    if(status_code == 200):
-                        urls.append(link_str)
-                        counter += 1    
-                except urllib.error.HTTPError:
-                    pass
-                except urllib.error.URLError:
-                    pass
+            
+            if counter == 0:
+                if link_str.startswith('http') and 'google' not in link_str:
+                    if counter == NUM_URL: #  
+                        break
+                    # print(link_str) # debug
+                    try:
+                        html = urllib.request.urlopen(link_str)
+                        status_code = html.getcode()
+                        # print(status_code) # debug
+                        if(status_code == 200):
+                            urls.append(link_str)
+                            counter += 1    
+                    except urllib.error.HTTPError:
+                        pass
+                    except urllib.error.URLError:
+                        pass
+            else:
+                dup_link = str(urls[counter-1])
+                if link_str.startswith('http') and 'google' not in link_str and dup_link not in link_str:
+                    if counter == NUM_URL: #  
+                        break
+                    # print(link_str) # debug
+                    try:
+                        html = urllib.request.urlopen(link_str)
+                        status_code = html.getcode()
+                        # print(status_code) # debug
+                        if(status_code == 200):
+                            urls.append(link_str)
+                            counter += 1    
+                    except urllib.error.HTTPError:
+                        pass
+                    except urllib.error.URLError:
+                        pass
 
                                 
     return urls    
-
-## Function to determine if an element is visible
-def visible(element):
-    if element.parent.name in ['style', 'script', '[document]', 'head', 'title', 'nav']:
-        return False
-    elif re.match('<!--.*-->', str(element.encode('utf-8'))):
-        return False
-    return True
 
 ## Wed Scraper Function
 def web_scraping(urls):
 
     i = 0
-    while i < 1:
-        # html = urllib.request.urlopen(urls[i])
-        # soup = BeautifulSoup(html, features="lxml")
-        # data = soup.findAll(text=True)
-        # result = filter(visible, data)
-        # temp_list = list(result)      # list from filter
-        # temp_str = ' '.join(temp_list)
-        # # print(repr(temp_str)) # debug
+    while i < NUM_URL:       
 
-        # # temp_str =  str(i)
-        # # soup = BeautifulSoup(html, features="lxml")
-        # # for p in soup.select('p'):
-        # #     soup1 = BeautifulSoup(p, features="lxml")
-        # #     print (''.join(text.strip() for text in soup1.p.find_all(text=True, recursive=False)))
-       
+        # print('\n@@@', urls[i])  # debug
+
         html = urllib.request.urlopen(urls[i])
         soup = BeautifulSoup(html, features="lxml")
         temp_list = []
@@ -89,9 +90,7 @@ def web_scraping(urls):
             # print(p.getText()) # debug
             temp_list.append(p.getText())
 
-        # print('\n@@@@@@@@@', temp_list)
         temp_str = ' '.join(temp_list)
-        print(repr(temp_str))
 
         page_name = 'p' + str(i+1) + '.txt'
         with open(page_name, 'w', encoding='utf-8') as f:
@@ -99,56 +98,62 @@ def web_scraping(urls):
 
         i += 1
 
-    # print("\n________End of web_scraping________")
-
 ## Preprocessing Function
-def preprocessing(raw_text, index):
+def preprocessing():
+    all_tokens = []
+    all_sents = []
 
-    text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
-    text = ' '.join(text_chunks)
+    i = 0
+    while i < NUM_URL:
+        page_name = 'p' + str(i+1) + '.txt'
+        with open(page_name, 'r', encoding='utf-8') as f:
+            raw_text = f.read()
 
-    sents = sent_tokenize(text)
-    name_text = str(index) + '.txt'
-    with open(name_text, 'w', encoding='utf-8') as f:
-        for sent in sents:
-            f.write(str(sent) + '\n\n')
+        tokens = (word_tokenize(raw_text))
+        all_tokens = all_tokens + tokens
+
+        text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
+        text = ' '.join(text_chunks)
+
+        sents = sent_tokenize(text)
+        all_sents = all_sents + sents
+
+        name_text = str(i+1) + '.txt'
+        with open(name_text, 'w', encoding='utf-8') as f:
+            for sent in sents:
+                f.write(str(sent) + '\n\n')
+        i += 1
+
+    return all_tokens
    
 ## Function to find import term
-def find_important_term():
+def find_important_term(all_tokens):
 
-    a
-    index = 1
-    while(index < 16):
-        path = 'p' + str(index) + '.txt'
-        with open(path, 'r', encoding='utf-8') as f:
-            sents = f.read()
-            index += 1
+    tokens = [t for t in all_tokens if t.isalpha() and t not in stopwords.words('english')]
 
-    tokens = word_tokenize(all_text)
-    tokens = [t for t in tokens if t.isalpha() and t not in stopwords.words('english')]
     wordCounter = Counter(tokens)
-    top25_words = wordCounter.most_common(25)
-    print(top25_words)
+    top25_words = wordCounter.most_common(NUM_IMPORTANT_TERM)
+
+    print('\n\nTop 25 important words:\n', top25_words)
+
+    return top25_words
+
 
 ## Chatbot-Searchable Knowledge Base Function
-def build_knowledge_base(top25):
-    # tokens = [t for t in tokens if t.isalpha() and t not in stopwords.words('english')]
-    # wordCounter = Counter(tokens)
-    # top_words = wordCounter.most_common(25)
-    # print(top_words)
+def build_knowledge_base(top10):
+
     know_base = {}
     list_words = []
-    for a_tuple in top25:
+    for a_tuple in top10:
         list_words.append(a_tuple[0])
 
-    print(list_words)
-    for i in list_words[:10]:
-        req = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/%7Bi%7D%22")
+    for i in list_words:
+        req = requests.get(
+            f"https://api.dictionaryapi.dev/api/v2/entries/en/{i}")
         know_base[str(i)] = req.text
 
-    print('\n\n', know_base)
+    print('\n\n Knowlege Base:\n', know_base)
     pickle.dump(know_base, open('k_base.p', 'wb'))
-
 
 
 ## main
@@ -165,25 +170,18 @@ def main():
     web_scraping(urls)
    
   
-    # # Preprocessing
-    # index = 1
-    # while(index < 16):
-    #     path = 'p' + str(index) + '.txt'
-    #     with open(path, 'r', encoding='utf-8') as f:
-    #         raw_text = f.read()
-    #         preprocessing(raw_text, index)
-    #         index += 1
+    # Preprocessing
+    all_tokens = preprocessing()
+
+    # Top 25 Important Terms
+    find_important_term(all_tokens)
 
 
-    # # # Top 25 Important Terms
-    # find_important_term()
-
-
-
-    # # Chatbot-Searchable Knowledge Base
-    # build_knowledge_base(top25)
+    ## Chatbot-Searchable Knowledge Base
+    handpick_top10 = [('Reeves', 535), ('The', 192), ('Keanu', 169), ('film', 110), ('one', 107), ('John', 75), ('movie', 66), ('Wick', 64), ('like', 61), ('actor', 54)]
+    build_knowledge_base(handpick_top10)
         
 
-    print('\n________End of main________')
+    print('\n________Program End________')
 if __name__ == "__main__":
     main()
