@@ -13,10 +13,8 @@ import re
 from nltk import sent_tokenize
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-import math
 import pickle
-import wordhoard
-import socket
+from collections import Counter
 
 
 
@@ -39,7 +37,7 @@ def web_crawling(starter_url):
                 i = link_str.find('&')
                 link_str = link_str[:i]
             if link_str.startswith('http') and 'google' not in link_str:
-                if counter == 15: #  
+                if counter == 1: #  
                     break
                 # print(link_str) # debug
                 try:
@@ -59,32 +57,52 @@ def web_crawling(starter_url):
 
 ## Function to determine if an element is visible
 def visible(element):
-    if element.parent.name in ['style', 'script', '[document]', 'head', 'title']:
+    if element.parent.name in ['style', 'script', '[document]', 'head', 'title', 'nav']:
         return False
     elif re.match('<!--.*-->', str(element.encode('utf-8'))):
         return False
     return True
 
 ## Wed Scraper Function
-def web_scraping(url, page_index):
+def web_scraping(urls):
 
-    
-    html = urllib.request.urlopen(url)
-    soup = BeautifulSoup(html, features="lxml")
-    data = soup.findAll(text=True)
-    result = filter(visible, data)
-    temp_list = list(result)      # list from filter
-    temp_str = ' '.join(temp_list)
-    # print(repr(temp_str)) # debug
+    i = 0
+    while i < 1:
+        # html = urllib.request.urlopen(urls[i])
+        # soup = BeautifulSoup(html, features="lxml")
+        # data = soup.findAll(text=True)
+        # result = filter(visible, data)
+        # temp_list = list(result)      # list from filter
+        # temp_str = ' '.join(temp_list)
+        # # print(repr(temp_str)) # debug
 
-    page_name = 'p' + str(page_index) + '.txt'
-    with open(page_name, 'w', encoding='utf-8') as f:
-        f.write(temp_str)
+        # # temp_str =  str(i)
+        # # soup = BeautifulSoup(html, features="lxml")
+        # # for p in soup.select('p'):
+        # #     soup1 = BeautifulSoup(p, features="lxml")
+        # #     print (''.join(text.strip() for text in soup1.p.find_all(text=True, recursive=False)))
+       
+        html = urllib.request.urlopen(urls[i])
+        soup = BeautifulSoup(html, features="lxml")
+        temp_list = []
+        for p in soup.select('p'):
+            # print(p.getText()) # debug
+            temp_list.append(p.getText())
+
+        # print('\n@@@@@@@@@', temp_list)
+        temp_str = ' '.join(temp_list)
+        print(repr(temp_str))
+
+        page_name = 'p' + str(i+1) + '.txt'
+        with open(page_name, 'w', encoding='utf-8') as f:
+            f.write(temp_str)
+
+        i += 1
 
     # print("\n________End of web_scraping________")
 
 ## Preprocessing Function
-def preprocessing(raw_text):
+def preprocessing(raw_text, index):
 
     text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
     text = ' '.join(text_chunks)
@@ -95,6 +113,22 @@ def preprocessing(raw_text):
         for sent in sents:
             f.write(str(sent) + '\n\n')
    
+## Function to find import term
+def find_important_term():
+
+    a
+    index = 1
+    while(index < 16):
+        path = 'p' + str(index) + '.txt'
+        with open(path, 'r', encoding='utf-8') as f:
+            sents = f.read()
+            index += 1
+
+    tokens = word_tokenize(all_text)
+    tokens = [t for t in tokens if t.isalpha() and t not in stopwords.words('english')]
+    wordCounter = Counter(tokens)
+    top25_words = wordCounter.most_common(25)
+    print(top25_words)
 
 ## Chatbot-Searchable Knowledge Base Function
 def build_knowledge_base(top25):
@@ -120,7 +154,7 @@ def build_knowledge_base(top25):
 ## main
 def main():
     starter_url = "https://en.wikipedia.org/wiki/Keanu_Reeves"
-    
+
     # Web Crawler
     urls = web_crawling(starter_url)
     print('List of 15 relevants urls:')
@@ -128,25 +162,21 @@ def main():
         print(url)
 
     # Web Scraper
-    page_index = 1
-    for url in urls:
-        web_scraping(url, page_index)
-        page_index += 1
-
+    web_scraping(urls)
+   
   
-    # Preprocessing
-    index = 1
-    while(index < 16):
-        path = 'p' + str(index) + '.txt'
-        with open(path, 'r', encoding='utf-8') as f:
-            raw_text = f.read()
-            preprocessing(raw_text, index)
-            index += 1
+    # # Preprocessing
+    # index = 1
+    # while(index < 16):
+    #     path = 'p' + str(index) + '.txt'
+    #     with open(path, 'r', encoding='utf-8') as f:
+    #         raw_text = f.read()
+    #         preprocessing(raw_text, index)
+    #         index += 1
 
 
-    # # 25 Important Term
-    # top25 = find_25terms()
-    # # print(top25)
+    # # # Top 25 Important Terms
+    # find_important_term()
 
 
 
