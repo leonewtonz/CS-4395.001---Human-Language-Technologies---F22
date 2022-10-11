@@ -62,3 +62,18 @@ PropBank and semantic parsing techniques that employ them
     	*	For example: "ngram_files/LangId.train.English"
  -	Unpacking the pickle, calculating the probability for each language, outputting the accuracy and line of incorrectly classified items. Click for for source code [program2.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/N-gram/program2.py)
 -	An overview of ngram. [Overview of Ngrams](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/N-gram/Overview%20of%20Ngrams.pdf)
+
+
+## 7. Web Crawler
+
+-	Objectives:
+	+	Understand the importance of corpora in NLP tasks
+	+	Understand basic HTML
+	+	Understand how websites work
+	+	Be able to do web scrapping with Beautiful Soup
+	+	Create a web crawler
+	+	Create a searchable knowledge base (Can be used for chatbot)
+
+-	Source Code [web_crawler.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Web%20Crawler/web_crawler.py)
+
+-	Narrative document [NarrativeWebCrawler.pdf](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Web%20Crawler/NarrativeWebCrawler.pdf)
