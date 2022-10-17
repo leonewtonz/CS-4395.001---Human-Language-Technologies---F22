@@ -84,4 +84,4 @@ PropBank and semantic parsing techniques that employ them
 	+	Understand concepts related to sentence syntax.
 	+	Understand 3 types of sentence parses: PSG, Dependency, SRL
 	
--	Overview and demon of 3 types on sample sentence. 
+-	Overview and demon of 3 types on sample sentence. [Syntax Parsing](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Syntax%20Parsing/Syntax%20Parsing.pdf)

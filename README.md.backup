@@ -83,4 +83,5 @@ PropBank and semantic parsing techniques that employ them
 -	Objective:
 	+	Understand concepts related to sentence syntax.
 	+	Understand 3 types of sentence parses: PSG, Dependency, SRL
--	
+	
+-	Overview and demon of 3 types on sample sentence. [Syntax Parsing]()
