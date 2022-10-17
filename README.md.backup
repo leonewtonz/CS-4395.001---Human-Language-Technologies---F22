@@ -77,3 +77,10 @@ PropBank and semantic parsing techniques that employ them
 -	Source Code [web_crawler.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Web%20Crawler/web_crawler.py)
 
 -	Narrative document [NarrativeWebCrawler.pdf](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Web%20Crawler/NarrativeWebCrawler.pdf)
+
+## 8. Syntax Parsing
+
+-	Objective:
+	+	Understand concepts related to sentence syntax.
+	+	Understand 3 types of sentence parses: PSG, Dependency, SRL
+-	
