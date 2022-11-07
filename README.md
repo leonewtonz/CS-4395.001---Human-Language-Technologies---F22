@@ -86,5 +86,11 @@ PropBank and semantic parsing techniques that employ them
 	
 -	Overview and demon of 3 types on sample sentence. [Syntax Parsing](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Syntax%20Parsing/Syntax%20Parsing.pdf)
 
+## 9. Author Attribution
 
-sajkfsj
+-	Objectives:
+
+	+	Gain experience with machine learning using sklearn
+	+	Experiment with the NLP task author attribution
+	
+-	Document and sample run: [Author_Attribution](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Author%20Attribution/Author_Attribution.pdf)
