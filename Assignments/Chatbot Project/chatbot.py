@@ -15,20 +15,6 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 
-def related(x_text):
-    x_text = x_text.lower()
-    if "name" in x_text:
-        y_text = "what's your name?"
-    elif "weather" in x_text:
-        y_text = "what's today's weather?"
-    elif "robot" in x_text:
-        y_text = "Are you a robot?"
-    elif "how are" in x_text:
-        y_text = "How are you?"
-    else:
-        y_text = ""
-    return y_text
-
 
 def respond(message):
     name = "Funny Bot 101"
