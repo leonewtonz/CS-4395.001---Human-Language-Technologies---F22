@@ -3,7 +3,16 @@
 # Author: Leo Nguyen - ldn190002
 
 # Porfolio: Chatbot Project
+
 import random
+import pickle
+import os
+from bs4 import BeautifulSoup
+import urllib.request
+import re
+from nltk import sent_tokenize
+from nltk import word_tokenize
+from nltk.corpus import stopwords
 
 
 def related(x_text):
@@ -56,7 +65,7 @@ def respond(message):
     return bot_message
 
 
-def send_message(message, user_name):
+def send_message(message):
     bot_template = "Bot : {0}"
     response = respond(message)
     print(bot_template.format(response))
@@ -64,8 +73,8 @@ def send_message(message, user_name):
 
 # main
 def main():
-    user_name = input("Please enter your username:")
-    user_name = user_name.lower()
+    os.system('python az.py')
+    user_name = input("Please enter your username:").lower()
 
     # key = user_name
     # value = [name, personal info, like, dislike, personal remarks]
@@ -73,19 +82,33 @@ def main():
     # personal remarks: top 20 word in the whole conversation (Current and Past, each for each text)
 
     ## like/dislike: tokens, sentences --> anything after that word
-    dict_username = {}
+
+    try:
+        # read the pickle file
+        dict_username = pickle.load(open('dict_username.p', 'rb'))  # read binary
+        # print(dict_username) # debug
+    except FileNotFoundError:
+        dict_username = {}
 
     print('\n************\n')
     bot_template = "Bot : {0}"
 
-    exist_user_greeting = "Hi " + user_name + "!. " + "Good to see you again"
-    new_user_greeting = "Hi there! What should i call you?"
-
     if user_name in dict_username:
+        name = dict_username.get(user_name)[0].title()
+        exist_user_greeting = "Hi " + name+ ". " + "Good to see you again !"
         print(bot_template.format(exist_user_greeting))
-        # open pickle
+
+        while True:
+            user_input = input(name.title() + ' : ')
+            if user_input == "exit" or user_input == "stop":
+                break
+            related_text = related(user_input)
+            send_message(related_text)
+
+
     # get everything ready for conservation
     else:  # New user. Build new profile
+        new_user_greeting = "Hi there! What should i call you?"
         print(bot_template.format(new_user_greeting))
         name = input('User : ').lower()
         dict_username[user_name] = [name]
@@ -98,8 +121,10 @@ def main():
             if user_input == "exit" or user_input == "stop":
                 break
             related_text = related(user_input)
-            send_message(related_text, user_name)
+            send_message(related_text)
 
+    # save the pickle file before exit program
+    pickle.dump(dict_username, open('dict_username.p', 'wb'))  # write binary
 
     # while True:
     #     user_input = input(user_name + ' : ')
