@@ -81,6 +81,7 @@ def web_crawling(starter_url):
 ## Wed Scraper Function
 def web_scraping(urls):
     i = 0
+    raw_data = ''
     while i < NUM_URL:
 
         # print('\n@@@', urls[i])  # debug
@@ -92,43 +93,30 @@ def web_scraping(urls):
             # print(p.getText()) # debug
             temp_list.append(p.getText())
 
-        temp_str = ' '.join(temp_list)
+            temp_str = ' '.join(temp_list)
 
         page_name = 'p' + str(i + 1) + '.txt'
         with open(page_name, 'w', encoding='utf-8') as f:
             f.write(temp_str)
 
+        raw_data = raw_data + temp_str
         i += 1
+
+    # with open('raw_data.txt', 'w', encoding='utf-8') as f:
+    #     f.write(raw_data)
+    return raw_data.lower()
 
 
 ## Preprocessing Function
-def preprocessing():
-    all_tokens = []
-    all_sents = []
+def preprocessing(raw_text):
+    text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
+    text = ' '.join(text_chunks)
 
-    i = 0
-    while i < NUM_URL:
-        page_name = 'p' + str(i + 1) + '.txt'
-        with open(page_name, 'r', encoding='utf-8') as f:
-            raw_text = f.read()
+    with open('corpus.txt', 'w', encoding='utf-8') as f:
+        f.write(text)
 
-        tokens = (word_tokenize(raw_text))
-        all_tokens = all_tokens + tokens
-
-        text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
-        text = ' '.join(text_chunks)
-
-        sents = sent_tokenize(text)
-        all_sents = all_sents + sents
-
-        name_text = str(i + 1) + '.txt'
-        with open(name_text, 'w', encoding='utf-8') as f:
-            for sent in sents:
-                f.write(str(sent) + '\n\n')
-        i += 1
-
-    return all_tokens
-
+    sents_respond = sent_tokenize(text)
+    pickle.dump(sents_respond, open('k_base.p', 'wb'))
 
 ## Function to find import term
 def find_important_term(all_tokens):
@@ -169,12 +157,11 @@ def main():
         print(url)
 
     # Web Scraper
-    web_scraping(urls)
+    raw_text = web_scraping(urls)
 
+    # Preprocessing
+    preprocessing(raw_text)
 
-    # # Preprocessing
-    # all_tokens = preprocessing()
-    #
     # # Top 25 Important Terms
     # find_important_term(all_tokens)
 

@@ -7,13 +7,23 @@
 import random
 import pickle
 import os
-from bs4 import BeautifulSoup
-import urllib.request
-import re
-from nltk import sent_tokenize
-from nltk import word_tokenize
-from nltk.corpus import stopwords
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 
+
+def related(x_text):
+    x_text = x_text.lower()
+    if "name" in x_text:
+        y_text = "what's your name?"
+    elif "weather" in x_text:
+        y_text = "what's today's weather?"
+    elif "robot" in x_text:
+        y_text = "Are you a robot?"
+    elif "how are" in x_text:
+        y_text = "How are you?"
+    else:
+        y_text = ""
+    return y_text
 
 
 def respond(message):
@@ -51,15 +61,33 @@ def respond(message):
     return bot_message
 
 
-def send_message(message):
+def send_message(answer):
     bot_template = "Bot : {0}"
-    response = respond(message)
-    print(bot_template.format(response))
+    print(bot_template.format(answer))
 
+
+def chatbot_respond(user_input, k_base):
+    # Append the query to the sentences list
+    k_base.append(user_input)
+    # Create the sentences vector based on the list
+    vectorizer = TfidfVectorizer()
+    sentences_vectors = vectorizer.fit_transform(k_base)
+
+    # Measure the cosine similarity and take the second closest index because the first index is the user query
+    vector_values = cosine_similarity(sentences_vectors[-1], sentences_vectors)
+    answer = k_base[vector_values.argsort()[0][-2]]
+    # Final check to make sure there are result present. If all the result are 0, means the text input by us are not captured in the corpus
+    input_check = vector_values.flatten()
+    input_check.sort()
+
+    if input_check[-2] == 0:
+        return "Please Try again"
+    else:
+        return answer
 
 # main
 def main():
-    os.system('python az.py')
+    # os.system('python az.py') # debug
     user_name = input("Please enter your username:").lower()
 
     # key = user_name
@@ -76,20 +104,32 @@ def main():
     except FileNotFoundError:
         dict_username = {}
 
+
+    try:
+        # read the pickle file
+        k_base = pickle.load(open('k_base.p', 'rb'))  # read binary
+        # print(dict_username) # debug
+    except FileNotFoundError:
+        # Maybe run the knowledge base file
+        pass
+
+
     print('\n************\n')
     bot_template = "Bot : {0}"
 
-    if user_name in dict_username:
+    if user_name in dict_username: # User already exist
         name = dict_username.get(user_name)[0].title()
-        exist_user_greeting = "Hi " + name+ ". " + "Good to see you again !"
+        exist_user_greeting = "Hi " + name + ". " + "Good to see you again !"
         print(bot_template.format(exist_user_greeting))
-
         while True:
-            user_input = input(name.title() + ' : ')
+            user_input = input(name.title() + ' : ').lower()
             if user_input == "exit" or user_input == "stop":
                 break
-            related_text = related(user_input)
-            send_message(related_text)
+            # related_text = related(user_input)
+            answer = chatbot_respond(user_input, k_base)
+            send_message(answer)
+
+
 
 
     # get everything ready for conservation
@@ -103,11 +143,11 @@ def main():
         # print('Name of user:' + dict_username[user_name][1])  # debug
 
         while True:
-            user_input = input(name.title() + ' : ')
+            user_input = input(name.title() + ' : ').lower()
             if user_input == "exit" or user_input == "stop":
                 break
-            related_text = related(user_input)
-            send_message(related_text)
+            answer = chatbot_respond(user_input, k_base)
+            send_message(answer)
 
     # save the pickle file before exit program
     pickle.dump(dict_username, open('dict_username.p', 'wb'))  # write binary
