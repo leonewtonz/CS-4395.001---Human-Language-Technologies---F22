@@ -97,7 +97,7 @@ def main():
 
     ## like/dislike: tokens, sentences --> anything after that word
 
-    try:
+    try: # open user profile
         # read the pickle file
         dict_username = pickle.load(open('dict_username.p', 'rb'))  # read binary
         # print(dict_username) # debug
@@ -105,10 +105,10 @@ def main():
         dict_username = {}
 
 
-    try:
+    try: # open knowledge base
         # read the pickle file
         k_base = pickle.load(open('k_base.p', 'rb'))  # read binary
-        # print(dict_username) # debug
+
     except FileNotFoundError:
         # Maybe run the knowledge base file
         pass
@@ -128,6 +128,7 @@ def main():
             # related_text = related(user_input)
             answer = chatbot_respond(user_input, k_base)
             send_message(answer)
+            k_base.remove(user_input)
 
 
 
@@ -148,6 +149,7 @@ def main():
                 break
             answer = chatbot_respond(user_input, k_base)
             send_message(answer)
+            k_base.remove(user_input)
 
     # save the pickle file before exit program
     pickle.dump(dict_username, open('dict_username.p', 'wb'))  # write binary

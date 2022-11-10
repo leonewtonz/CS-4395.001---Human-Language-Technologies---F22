@@ -1,9 +1,9 @@
 # CS 4395.001 - NLP
 # Dr. Karen Mazidi
 # Author: Leo Nguyen - ldn190002
+#         Amol Perubhatla - AVP180003
 
-# Porfolio: Chatbot Project
-
+# Porfolio Chapter 12: Web Crawler
 
 
 from bs4 import BeautifulSoup
@@ -25,7 +25,7 @@ def web_crawling(starter_url):
     data = r.text
     soup = BeautifulSoup(data, features="lxml")
 
-    # Extract 10 urls
+    # Extract 15 relevant urls
     counter = 0
     urls = []
     for link in soup.find_all('a'):
@@ -47,7 +47,7 @@ def web_crawling(starter_url):
                         html = urllib.request.urlopen(link_str)
                         status_code = html.getcode()
                         # print(status_code) # debug
-                        if status_code == 200:
+                        if(status_code == 200):
                             urls.append(link_str)
                             counter += 1    
                     except urllib.error.HTTPError:
@@ -76,47 +76,56 @@ def web_crawling(starter_url):
     return urls    
 
 ## Wed Scraper Function
-def web_scraping(urls, topics):
-    k_base = {}
-    for url in urls:
-        for topic in topics:
-            if topic in url:
-                print('\n****', topic, '*****')
-                topic_urls = web_crawling(url)
-                i = 0
-                raw_text = ''
+def web_scraping(urls):
 
-                print('Check raw_text reset after each topic', raw_text)
-                while i < len(topic_urls):
-                    html = urllib.request.urlopen(topic_urls[i])
-                    soup = BeautifulSoup(html, features="xml")
-                    temp_list = []
-                    for p in soup.select('p'):
-                        # print(p.getText()) # debug
-                        temp_list.append(p.getText())
+    i = 0
+    while i < NUM_URL:       
 
-                        temp_str = ' '.join(temp_list)
-                    # debug
-                    # page_name = 'p' + str(i + 1) + '.txt'
-                    # with open(page_name, 'w', encoding='utf-8') as f:
-                    #     f.write(temp_str)
-                    # debug
+        # print('\n@@@', urls[i])  # debug
 
-                    raw_text = raw_text + temp_str
-                    i += 1
-                print('\n@@@@\n', raw_text)
-                sents_topic = preprocessing(raw_text)
-                k_base[topic] = sents_topic
+        html = urllib.request.urlopen(urls[i])
+        soup = BeautifulSoup(html, features="lxml")
+        temp_list = []
+        for p in soup.select('p'):
+            # print(p.getText()) # debug
+            temp_list.append(p.getText())
 
-    pickle.dump(k_base, open('k_base.p', 'wb'))
+        temp_str = ' '.join(temp_list)
 
-# Preprocessing Function
-def preprocessing(raw_text):
-    text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
-    text = ' '.join(text_chunks)
+        page_name = 'p' + str(i+1) + '.txt'
+        with open(page_name, 'w', encoding='utf-8') as f:
+            f.write(temp_str)
 
-    return sent_tokenize(text)
+        i += 1
 
+## Preprocessing Function
+def preprocessing():
+    all_tokens = []
+    all_sents = []
+
+    i = 0
+    while i < NUM_URL:
+        page_name = 'p' + str(i+1) + '.txt'
+        with open(page_name, 'r', encoding='utf-8') as f:
+            raw_text = f.read()
+
+        tokens = (word_tokenize(raw_text))
+        all_tokens = all_tokens + tokens
+
+        text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
+        text = ' '.join(text_chunks)
+
+        sents = sent_tokenize(text)
+        all_sents = all_sents + sents
+
+        name_text = str(i+1) + '.txt'
+        with open(name_text, 'w', encoding='utf-8') as f:
+            for sent in sents:
+                f.write(str(sent) + '\n\n')
+        i += 1
+
+    return all_tokens
+   
 ## Function to find import term
 def find_important_term(all_tokens):
 
@@ -150,25 +159,22 @@ def build_knowledge_base(top10):
 ## main
 def main():
     starter_url = "https://www.neondystopia.com/"
-    topics = ['movies-anime', 'politics-philosophy', 'books-fiction',
-              'games', 'music', 'technology', 'art-photography',
-              'fashion-lifestyle', 'games-database', 'what-is-cyberpunk']
 
     # Web Crawler
     urls = web_crawling(starter_url)
-    print('List of 10 topics urls:')
+    print('List of 15 relevants urls:')
     for url in urls:
         print(url)
 
     # Web Scraper
-    web_scraping(urls, topics)
+    web_scraping(urls)
    
-    #
-    # # Preprocessing
-    # all_tokens = preprocessing()
-    #
-    # # Top 25 Important Terms
-    # find_important_term(all_tokens)
+  
+    # Preprocessing
+    all_tokens = preprocessing()
+
+    # Top 25 Important Terms
+    find_important_term(all_tokens)
 
 
 
