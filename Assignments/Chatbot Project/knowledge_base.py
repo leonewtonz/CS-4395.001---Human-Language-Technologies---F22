@@ -161,7 +161,7 @@ def main():
         print(url)
 
     # Web Scraper
-    web_scraping(urls, topics)
+    # web_scraping(urls, topics)
    
     #
     # # Preprocessing

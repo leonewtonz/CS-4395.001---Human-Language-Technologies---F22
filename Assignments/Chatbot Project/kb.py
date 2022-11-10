@@ -21,14 +21,13 @@ NUM_IMPORTANT_TERM = 25
 
 
 ## Web Crawler Function
-def web_crawling(starter_url):
+def web_crawling(starter_url, keyword):
     r = requests.get(starter_url)
     data = r.text
     soup = BeautifulSoup(data, features="lxml")
 
     # keyword = ['reviews', 'articles', 'cyberpunk']
-    keyword = ['what-is-cyberpunk', 'cyberpunk']
-    # keyword = ['cyberpunk']
+    keyword = ['pet']
     # Extract 15 relevant urls
     counter = 0
     urls = []
