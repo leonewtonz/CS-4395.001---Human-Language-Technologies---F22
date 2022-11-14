@@ -1,65 +1,23 @@
 # CS 4395.001 - NLP
 # Dr. Karen Mazidi
 # Author: Leo Nguyen - ldn190002
+#         Amol Perubhatla - AVP180003
 
 # Porfolio: Chatbot Project
 
 import random
-import pickle
-import os
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+import pickle
+from subprocess import call
+import os
+from nltk.corpus import stopwords
+from collections import Counter
+from nltk import sent_tokenize
+from nltk import word_tokenize
+from collections import Counter
 
-
-def related(x_text):
-    x_text = x_text.lower()
-    if "name" in x_text:
-        y_text = "what's your name?"
-    elif "weather" in x_text:
-        y_text = "what's today's weather?"
-    elif "robot" in x_text:
-        y_text = "Are you a robot?"
-    elif "how are" in x_text:
-        y_text = "How are you?"
-    else:
-        y_text = ""
-    return y_text
-
-
-def respond(message):
-    name = "Funny Bot 101"
-    weather = "rainy"
-    mood = "Happy"
-    responses = {
-        "what's your name?": [
-            "They call me {0}".format(name),
-            "I usually go by {0}".format(name),
-            "My name is the {0}".format(name)],
-        "what's today's weather?": [
-            "The weather is {0}".format(weather),
-            "It's {0} today".format(weather),
-            "Let me check, it looks {0} today".format(weather)],
-        "Are you a robot?": [
-            "What do you think?",
-            "Maybe yes, maybe no!",
-            "Yes, I am a robot with human feelings.", ],
-        "How are you?": [
-            "I am feeling {0}".format(mood),
-            "{0}! How about you?".format(mood),
-            "I am {0}! How about yourself?".format(mood), ],
-        "": [
-            "Hey! Are you there?",
-            "What do you mean by saying nothing?",
-            "Sometimes saying nothing tells a lot :)", ],
-        "default": [
-            "this is a default message"]}
-
-    if message in responses:
-        bot_message = random.choice(responses[message])
-    else:
-        bot_message = random.choice(responses["default"])
-    return bot_message
-
+NUM_IMPORTANT_TERM = 25
 
 def send_message(answer):
     bot_template = "Bot : {0}"
@@ -67,100 +25,114 @@ def send_message(answer):
 
 
 def chatbot_respond(user_input, k_base):
-    # Append the query to the sentences list
+    # Add the user input into knowledge base
     k_base.append(user_input)
-    # Create the sentences vector based on the list
+
+    # Create the tfidf vector from knowledge_base
     vectorizer = TfidfVectorizer()
-    sentences_vectors = vectorizer.fit_transform(k_base)
+    sentences_tfidf = vectorizer.fit_transform(k_base)
 
-    # Measure the cosine similarity and take the second closest index because the first index is the user query
-    vector_values = cosine_similarity(sentences_vectors[-1], sentences_vectors)
-    answer = k_base[vector_values.argsort()[0][-2]]
-    # Final check to make sure there are result present. If all the result are 0, means the text input by us are not captured in the corpus
-    input_check = vector_values.flatten()
-    input_check.sort()
+    # Calculate the similarity of user_input and sentences in knowledge_base
+    # sentences_vectors[-1] is the user_input after TfidfVectorizer
+    similarity_score = cosine_similarity(sentences_tfidf[-1], sentences_tfidf)
 
-    if input_check[-2] == 0:
-        return "Please Try again"
+    i = 3
+    prev = k_base[similarity_score.argsort()[0][-2]]  # Base case
+    answers = [prev]
+
+    num_answer = 0
+    while i <= len(similarity_score.argsort()[0]) and num_answer < 5:
+        current = k_base[similarity_score.argsort()[0][-i]]
+        if current != prev:
+            answers.append(current)
+            prev = current
+            i += 1
+            num_answer += 1
+        else:
+            i += 1
+
+    # print('Answer List') # debug
+    # print(*answers, sep="\n") # debug
+
+    # Check if we have related answer from knowledge_base
+    similar = similarity_score.flatten() # Convert to 1-dim vector
+    similar.sort()
+    if similar[-2] == 0:
+        return answers.clear()
     else:
-        return answer
+        return answers
 
 # main
 def main():
-    # os.system('python az.py') # debug
+
+    # user_name will contain: name and information relevant to users
     user_name = input("Please enter your username:").lower()
 
-    # key = user_name
-    # value = [name, personal info, like, dislike, personal remarks]
+    print('Chatbot initialize ...')
 
-    # personal remarks: top 20 word in the whole conversation (Current and Past, each for each text)
+    # Handpick important term on knowledge base
+    top15 = ['cyberpunk', 'high tech-low life', 'blade runner', 'matrix', 'william gibson',
+             'corporation', 'mega city', 'philosophy']
 
-    ## like/dislike: tokens, sentences --> anything after that word
-
-    try: # open user profile
+    try:  # open user profile
         # read the pickle file
         dict_username = pickle.load(open('dict_username.p', 'rb'))  # read binary
         # print(dict_username) # debug
     except FileNotFoundError:
         dict_username = {}
 
-
-    try: # open knowledge base
+    try:  # open knowledge base
         # read the pickle file
         k_base = pickle.load(open('k_base.p', 'rb'))  # read binary
 
     except FileNotFoundError:
-        # Maybe run the knowledge base file
-        pass
+        # Create knowledge base
+        call(["python", "knowledge_base.py"])
+        k_base = pickle.load(open('k_base.p', 'rb'))  # read binary
 
+    exit_template = ["stop", "exit"]
 
     print('\n************\n')
     bot_template = "Bot : {0}"
 
-    if user_name in dict_username: # User already exist
+    if user_name in dict_username:  # User already exist
         name = dict_username.get(user_name)[0].title()
         exist_user_greeting = "Hi " + name + ". " + "Good to see you again !"
         print(bot_template.format(exist_user_greeting))
         while True:
             user_input = input(name.title() + ' : ').lower()
-            if user_input == "exit" or user_input == "stop":
+            if user_input in exit_template:
                 break
             # related_text = related(user_input)
-            answer = chatbot_respond(user_input, k_base)
-            send_message(answer)
-            k_base.remove(user_input)
+            answers = chatbot_respond(user_input, k_base)
+            if answers is not None:
+                send_message(random.choice(answers))
+                k_base.remove(user_input)
+            else:
+                suggestions = "Sorry. I am not sure what you mean. Try: " + str(top15)
+                print(bot_template.format(suggestions))
 
-
-
-
-    # get everything ready for conservation
     else:  # New user. Build new profile
         new_user_greeting = "Hi there! What should i call you?"
         print(bot_template.format(new_user_greeting))
         name = input('User : ').lower()
         dict_username[user_name] = [name]
 
-        # dict_username[user_name].append('123')
-        # print('Name of user:' + dict_username[user_name][1])  # debug
-
         while True:
             user_input = input(name.title() + ' : ').lower()
-            if user_input == "exit" or user_input == "stop":
+            if user_input in exit_template:
                 break
-            answer = chatbot_respond(user_input, k_base)
-            send_message(answer)
-            k_base.remove(user_input)
+            answers = chatbot_respond(user_input, k_base)
+            if answers is not None:
+                send_message(random.choice(answers))
+                k_base.remove(user_input)
+            else:
+                suggestions = "Sorry. I am not sure what you mean. Try: " + str(top15)
+                print(bot_template.format(suggestions))
+
 
     # save the pickle file before exit program
     pickle.dump(dict_username, open('dict_username.p', 'wb'))  # write binary
-
-    # while True:
-    #     user_input = input(user_name + ' : ')
-    #     user_input = user_input.lower()
-    #     related_text = related(user_input)
-    #     send_message(related_text, user_name)
-    #     if user_input == "exit" or user_input == "stop":
-    #         break
 
 
 if __name__ == "__main__":
