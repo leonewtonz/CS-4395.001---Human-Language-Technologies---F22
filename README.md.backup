@@ -96,4 +96,29 @@ PropBank and semantic parsing techniques that employ them
 -	Document and sample run: [Author_Attribution](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Author%20Attribution/Author_Attribution.pdf)
 
 
-## 10. 
+## 10. Reading ACL Papers
+-	[ACL_summary](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/ACL%20Paper%20Summary/ACL_summary.pdf)
+
+
+## 11. Chatbot
+
+-	This is rule_based chatbot which will give the basic answer in cyberpunk topic. All data was collected from https://www.neondystopia.com/
+
+-	Objective:
+	
+	+ Create a chatbot using NLP techniques learned in class. 
+	+ The chatbot should be able to carry on a limited conversation in a particular domain using a knowledge base or knowledge from the web, and knowledge it learns from the user.
+
+-	Report [chatbot_report](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Chatbot%20Project/chatbot_report.pdf)
+	
+
+-	Chatbot system requires 3 files to run:
+
+	+ [chatbot.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Chatbot%20Project/chatbot.py)
+	+ [knowledge_base.py](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Chatbot%20Project/knowledge_base.py)
+	+ [stopwords.txt](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Chatbot%20Project/stopwords.txt)
+	
+	
+-	To run: Simply type in command_line as below:
+
+	py chatbot.py
