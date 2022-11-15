@@ -62,6 +62,25 @@ def chatbot_respond(user_input, k_base):
     else:
         return answers
 
+# preprocessing user input
+def preprocessing(user_input):
+
+    if 'stop' in user_input:
+        return 'stop'
+    else:
+        tokens = word_tokenize(user_input)
+        with open("stopwords.txt", 'r', encoding='utf-8') as f:
+            stop_words = f.read()
+
+        stpwrd = stopwords.words('english')
+        stpwrd.extend(word_tokenize(stop_words))
+
+        tokens = [t.lower() for t in tokens if t.isalpha() and t not in stpwrd]
+
+        # print('token', tokens) # debug
+
+    return tokens[0]
+
 # main
 def main():
 
@@ -72,7 +91,8 @@ def main():
 
     # Handpick important term on knowledge base
     top15 = ['cyberpunk', 'high tech-low life', 'blade runner', 'matrix', 'william gibson',
-             'corporation', 'mega city', 'philosophy']
+             'corporation', 'mega city', 'philosophy', 'phillip k. dick', 'cyberspace',
+             'ghost in the shell', 'akira', 'psycho-pass', 'lifestyle', 'japan']
 
     try:  # open user profile
         # read the pickle file
@@ -90,24 +110,31 @@ def main():
         call(["python", "knowledge_base.py"])
         k_base = pickle.load(open('k_base.p', 'rb'))  # read binary
 
-    exit_template = ["stop", "exit"]
+    exit_template = ["stop"]
 
     print('\n************\n')
     bot_template = "Bot : {0}"
 
     if user_name in dict_username:  # User already exist
         name = dict_username.get(user_name)[0].title()
+        # user_profile = dict_username.get(user_name)[1]
+
         exist_user_greeting = "Hi " + name + ". " + "Good to see you again !"
         print(bot_template.format(exist_user_greeting))
+
         while True:
             user_input = input(name.title() + ' : ').lower()
+            user_input = preprocessing(user_input)
             if user_input in exit_template:
                 break
+
             # related_text = related(user_input)
             answers = chatbot_respond(user_input, k_base)
             if answers is not None:
                 send_message(random.choice(answers))
                 k_base.remove(user_input)
+                dict_username[user_name][1] += ' ' + str(user_input)  # update user_profie
+                print('test old user_profile:', dict_username[user_name])  # debug
             else:
                 suggestions = "Sorry. I am not sure what you mean. Try: " + str(top15)
                 print(bot_template.format(suggestions))
@@ -117,15 +144,22 @@ def main():
         print(bot_template.format(new_user_greeting))
         name = input('User : ').lower()
         dict_username[user_name] = [name]
+        user_profile = ['']
+        dict_username[user_name].extend(user_profile)
 
         while True:
             user_input = input(name.title() + ' : ').lower()
+            user_input = preprocessing(user_input)
+
             if user_input in exit_template:
                 break
+
             answers = chatbot_respond(user_input, k_base)
             if answers is not None:
                 send_message(random.choice(answers))
                 k_base.remove(user_input)
+                dict_username[user_name][1] += ' ' + str(user_input)  # update user_profie
+                print('test new user_profile:', dict_username[user_name])  # debug
             else:
                 suggestions = "Sorry. I am not sure what you mean. Try: " + str(top15)
                 print(bot_template.format(suggestions))
