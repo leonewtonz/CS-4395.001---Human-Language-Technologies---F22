@@ -94,3 +94,6 @@ PropBank and semantic parsing techniques that employ them
 	+	Experiment with the NLP task author attribution
 	
 -	Document and sample run: [Author_Attribution](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Author%20Attribution/Author_Attribution.pdf)
+
+
+## 10. Reading ACL Papers
