@@ -99,7 +99,7 @@ def main():
     try:  # open user profile
         # read the pickle file
         dict_username = pickle.load(open('dict_username.p', 'rb'))  # read binary
-        # print(dict_username) # debug
+        print(dict_username) # debug
     except FileNotFoundError:
         dict_username = {}
 

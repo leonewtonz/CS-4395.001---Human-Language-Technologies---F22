@@ -126,6 +126,8 @@ def main():
     # Web Crawler
     checked_urls = []
     urls = web_crawling(starter_url, checked_urls)
+    print('Top 10 relevant topic:')
+    print(*urls, sep = '\n')
 
     # Web Scraper
     web_scraping(urls, checked_urls)
