@@ -119,6 +119,16 @@ PropBank and semantic parsing techniques that employ them
 	+ [stopwords.txt](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Chatbot%20Project/stopwords.txt)
 	
 	
--	To run: Simply type in command_line as below:
+-	To run: Simply type in command_line : py chatbot.py
+			
+## 12. Text Classification
 
-	py chatbot.py
+-	Objectives:
+
+	• Gain experience with Keras
+	• Gain experience with text classification
+	• Gain experience with deep learning model variations and embeddings
+	
+	Try 4 different approaches: Dense Sequential, RNN, CNN, Embedded Layer
+	
+	Document [Text_Classification](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Text%20Classification/Text_Classification.pdf)

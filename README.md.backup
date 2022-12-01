@@ -121,4 +121,17 @@ PropBank and semantic parsing techniques that employ them
 	
 -	To run: Simply type in command_line as below:
 
-	py chatbot.py
+		py chatbot.py
+		
+## 12. Text Classification
+
+	Objectives:
+
+	• Gain experience with Keras
+	• Gain experience with text classification
+	• Gain experience with deep learning model variations and embeddings
+	
+	Try 4 different approaches: Dense Sequential, RNN, CNN, Embedded Layer
+	
+	Document [Text_Classification]
+	
