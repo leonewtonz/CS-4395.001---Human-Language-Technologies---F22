@@ -132,3 +132,6 @@ PropBank and semantic parsing techniques that employ them
 	Try 4 different approaches: Dense Sequential, RNN, CNN, Embedded Layer
 	
 	Document [Text_Classification](https://github.com/leonewtonz/CS-4395.001---Human-Language-Technologies---F22/blob/main/Assignments/Text%20Classification/Text_Classification.pdf)
+	
+-	Dataset from Kaggle : Fake News Classification:
+https://www.kaggle.com/datasets/saurabhshahane/fake-newsclassification
